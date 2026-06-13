@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>متابعة تنفيذ الخطة الاستراتيجية 2026-2030</title>
+<style>
+:root{--pr:#1a5276;--pl:#2980b9;--ac:#27ae60;--wn:#f39c12;--dn:#c0392b;--bg:#f4f6f9;--ca:#fff;--bd:#dde1e7;--tx:#2c3e50;--tm:#7f8c8d;--ob:#fffef5;--eb:#fdf5ff;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:var(--bg);color:var(--tx);font-size:14px;}
+input[type=number]{-moz-appearance:textfield;}
+input[type=number]::-webkit-inner-spin-button,input[type=number]::-webkit-outer-spin-button{-webkit-appearance:none;margin:0;}
+#loginScreen{position:fixed;inset:0;z-index:998;background:linear-gradient(135deg,#1a5276,#1abc9c);display:flex;align-items:center;justify-content:center;}
+.lbox{background:#fff;border-radius:18px;padding:36px 40px;width:420px;max-width:94vw;box-shadow:0 20px 60px rgba(0,0,0,.25);text-align:center;}
+.llogo{font-size:44px;margin-bottom:8px;}
+.ltitle{font-size:17px;font-weight:800;color:var(--pr);margin-bottom:4px;}
+.lsub{font-size:11px;color:var(--tm);margin-bottom:24px;}
+.rbtn{display:flex;align-items:center;gap:12px;padding:14px 16px;border-radius:10px;border:2px solid var(--bd);cursor:pointer;text-align:right;background:#fafbfc;margin-bottom:10px;transition:all .2s;width:100%;}
+.rbtn:hover,.rbtn:focus{border-color:var(--pl);background:#f0f4f8;outline:none;}
+.rbtn.sel{border-color:var(--pr);background:#e8f4fd;}
+.rico{font-size:26px;}
+.rtxt strong{display:block;font-size:14px;color:var(--pr);}
+.rtxt span{font-size:11px;color:var(--tm);}
+.pwrap{display:none;margin-bottom:12px;}
+.pwrap input{width:100%;padding:10px;border:2px solid var(--bd);border-radius:8px;font-size:15px;font-family:inherit;text-align:center;letter-spacing:3px;outline:none;}
+.pwrap input:focus{border-color:var(--pl);}
+.perr{color:var(--dn);font-size:12px;margin-top:4px;display:none;}
+.lbtn{width:100%;padding:13px;background:var(--pr);color:#fff;border:none;border-radius:10px;font-size:15px;font-weight:700;cursor:pointer;font-family:inherit;margin-top:6px;}
+.lbtn:disabled{background:#bdc3c7;cursor:not-allowed;}
+.lbtn:not(:disabled):hover{background:#154360;}
+#syncBar{position:fixed;top:0;left:0;right:0;z-index:500;height:3px;}
+#syncBar.sy{background:linear-gradient(90deg,var(--pr),#2ecc71,var(--pr));animation:sya 1.2s infinite;}
+#syncBar.ok{background:var(--ac);}
+#syncBar.er{background:var(--dn);}
+@keyframes sya{0%{background-position:0%}100%{background-position:200%}}
+.hdr{background:linear-gradient(135deg,#1a5276,#2980b9);color:#fff;padding:14px 22px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,.2);}
+.hdr h1{font-size:14px;font-weight:700;}
+.hdr p{font-size:11px;opacity:.85;margin-top:2px;}
+.rbadge{padding:4px 12px;border-radius:20px;font-size:11px;font-weight:700;}
+.rbadge.adm{background:rgba(255,215,0,.25);border:1px solid rgba(255,215,0,.5);color:#ffd700;}
+.rbadge.mgr{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);color:#fff;}
+.obtn{padding:6px 13px;background:rgba(231,76,60,.25);color:#ff8a80;border:1px solid rgba(231,76,60,.4);border-radius:6px;cursor:pointer;font-size:12px;font-weight:600;font-family:inherit;}
+.obar{background:#e8f8f5;border-bottom:1px solid #a9dfbf;padding:4px 18px;font-size:11px;color:#1e8449;display:flex;align-items:center;gap:8px;}
+.odot{width:7px;height:7px;border-radius:50%;background:var(--ac);display:inline-block;animation:pulse 1.5s infinite;}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.ynav{background:#fff;border-bottom:2px solid var(--bd);display:flex;padding:0 16px;position:sticky;top:57px;z-index:99;overflow-x:auto;}
+.ytab{padding:11px 18px;cursor:pointer;border-bottom:3px solid transparent;font-weight:600;color:var(--tm);font-size:13px;margin-bottom:-2px;white-space:nowrap;}
+.ytab:hover{color:var(--pr);}
+.ytab.act{color:var(--pr);border-bottom-color:var(--pr);}
+.ssum{padding:14px 20px 0;}
+.stop{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px;}
+@media(max-width:640px){
+  .stop{grid-template-columns:1fr;}
+  .ynav{padding:0 8px;}
+  .ytab{padding:9px 11px;font-size:12px;}
+  .scards{grid-template-columns:1fr 1fr!important;}
+  .ssum{padding:10px 10px 0;}
+  .fwrap{padding:0 10px 10px;}
+  .twrap{padding:0 8px 20px;overflow-x:auto;}
+  table{min-width:560px;}
+  .dname{white-space:normal!important;font-size:10px;}
+  .dbar{width:50px!important;}
+  .hdr h1{font-size:13px;}
+}
+.ypw{background:#fff;border-radius:10px;padding:14px 16px;border:1px solid var(--bd);}
+.yprow{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;}
+.yppct{font-size:26px;font-weight:900;color:var(--pr);}
+.ypbl{font-size:12px;font-weight:700;}
+.ypbb{background:#e8ecf0;border-radius:8px;height:12px;overflow:hidden;}
+.ypbf{height:100%;border-radius:8px;transition:width .5s;}
+.dpw{background:#fff;border-radius:10px;padding:14px 16px;border:1px solid var(--bd);overflow-y:auto;max-height:180px;}
+.dptitle{font-size:12px;font-weight:700;color:var(--tm);margin-bottom:10px;}
+.drow{display:flex;align-items:center;gap:8px;margin-bottom:7px;}
+.dname{font-size:11px;flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.dbar{width:80px;height:7px;background:#e8ecf0;border-radius:4px;overflow:hidden;flex-shrink:0;}
+.dbf{height:100%;border-radius:4px;transition:width .4s;}
+.dpct{font-size:11px;font-weight:700;color:var(--pr);width:32px;text-align:left;flex-shrink:0;}
+.scards{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-bottom:12px;}
+.scard{background:#fff;border-radius:10px;padding:12px 14px;border:1px solid var(--bd);}
+.scard .lb{font-size:11px;color:var(--tm);margin-bottom:3px;}
+.scard .vl{font-size:22px;font-weight:800;}
+.scard .sb{font-size:10px;color:var(--tm);margin-top:2px;}
+.scard.tot .vl{color:var(--pr);}
+.scard.dn .vl{color:var(--ac);}
+.scard.ip .vl{color:var(--wn);}
+.scard.ns .vl{color:var(--tm);}
+.fwrap{padding:0 20px 10px;display:flex;gap:8px;flex-wrap:wrap;align-items:center;}
+.fg{display:flex;align-items:center;gap:6px;}
+.fg label{font-size:12px;font-weight:600;color:var(--tm);white-space:nowrap;}
+.fg select,.fg input{padding:6px 9px;border-radius:6px;border:1px solid var(--bd);font-size:12px;font-family:inherit;background:#fff;outline:none;}
+.fg input{min-width:160px;}
+.twrap{padding:0 20px 26px;}
+.ggrp{margin-bottom:16px;border-radius:10px;overflow:hidden;border:1px solid var(--bd);box-shadow:0 1px 4px rgba(0,0,0,.04);}
+.ghdr{background:linear-gradient(135deg,#1a5276,#2471a3);color:#fff;padding:10px 14px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;}
+.gnm{font-size:13px;font-weight:700;}
+.gst{font-size:11px;opacity:.9;display:flex;gap:11px;}
+.tog{transition:transform .2s;}
+.ghdr.col .tog{transform:rotate(-90deg);}
+.cgo{background:#fef9e7;color:#7d6608;text-align:center;font-size:10px;font-weight:800;padding:5px;border-bottom:2px solid #f9e79f;}
+.cge{background:#f5eef8;color:#7d3c98;text-align:center;font-size:10px;font-weight:800;padding:5px;border-bottom:2px solid #d7bde2;}
+.cgb{background:#f0f4f8;border-bottom:2px solid var(--bd);}
+table{width:100%;border-collapse:collapse;background:#fff;}
+thead tr{background:#f0f4f8;}
+th{padding:7px 8px;font-size:10px;font-weight:700;color:var(--tm);text-align:right;border-bottom:1px solid var(--bd);white-space:nowrap;}
+td{padding:7px 8px;border-bottom:1px solid #f0f2f5;vertical-align:middle;}
+tr:last-child td{border-bottom:none;}
+tr:hover td{background:#fafbfc;}
+.ptxt{font-size:12px;line-height:1.5;}
+.db{display:inline-block;padding:2px 6px;border-radius:4px;font-size:10px;font-weight:600;background:#e8f4fd;color:#1a5276;margin-top:3px;}
+.epb{background:none;border:none;cursor:pointer;font-size:11px;color:var(--tm);padding:0 3px;opacity:.5;transition:opacity .2s;}
+.epb:hover{opacity:1;color:var(--pr);}
+.pea{width:100%;min-height:34px;padding:4px 6px;border:1.5px solid var(--pl);border-radius:5px;font-size:11px;font-family:inherit;resize:vertical;outline:none;margin-top:3px;}
+.pact{display:flex;gap:5px;margin-top:4px;}
+.psb{background:var(--ac);color:#fff;border:none;border-radius:4px;padding:3px 10px;font-size:11px;cursor:pointer;font-family:inherit;}
+.pcb{background:#e8ecf0;color:var(--tx);border:none;border-radius:4px;padding:3px 10px;font-size:11px;cursor:pointer;font-family:inherit;}
+input[type=range]{-webkit-appearance:none;width:68px;height:5px;border-radius:3px;background:#dde1e7;outline:none;cursor:pointer;}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:14px;height:14px;border-radius:50%;background:var(--pr);cursor:pointer;}
+input[type=range]:disabled{opacity:.35;cursor:not-allowed;}
+.esl{background:#e8d5f5!important;}
+.esl::-webkit-slider-thumb{background:#9b59b6!important;}
+.ni{width:42px;padding:3px 4px;border:1px solid var(--bd);border-radius:5px;text-align:center;font-size:12px;font-weight:700;font-family:inherit;outline:none;color:var(--pr);}
+.ni:disabled{background:#f4f6f9;color:var(--tm);cursor:not-allowed;border-color:transparent;}
+.ni:focus:not(:disabled){border-color:var(--pl);}
+.en{color:#7d3c98!important;}
+.en:focus{border-color:#9b59b6!important;}
+.pl{font-size:10px;color:var(--tm);}
+.mb{height:4px;border-radius:3px;background:#e8ecf0;overflow:hidden;margin-top:2px;}
+.mbf{height:100%;border-radius:3px;transition:width .3s;}
+.lk{font-size:10px;color:var(--tm);}
+.sd{width:7px;height:7px;border-radius:50%;display:inline-block;flex-shrink:0;}
+.pw{display:flex;flex-direction:column;gap:4px;}
+.sr{display:flex;align-items:center;gap:5px;}
+.ri{width:100%;padding:4px 6px;border:1px solid var(--bd);border-radius:5px;font-size:11px;font-family:inherit;outline:none;}
+.ri:disabled{background:#f4f6f9;color:var(--tm);cursor:not-allowed;border-color:transparent;}
+.ri:focus:not(:disabled){border-color:var(--pl);}
+.re{background:var(--eb)!important;color:#7d3c98!important;}
+.re:focus{border-color:#9b59b6!important;}
+textarea.ni2{width:100%;min-height:46px;padding:5px 6px;border:1px solid var(--bd);border-radius:6px;font-size:11px;font-family:inherit;resize:vertical;outline:none;line-height:1.4;}
+textarea.ni2:focus{border-color:var(--pl);}
+@keyframes lf{0%{background:#d5f5e3}100%{background:transparent}}
+.lu{animation:lf 1.5s ease-out;}
+td.ch{background:#fffde7!important;}
+.toast{position:fixed;bottom:20px;right:20px;background:#2c3e50;color:#fff;padding:10px 15px;border-radius:8px;font-size:12px;box-shadow:0 4px 12px rgba(0,0,0,.25);opacity:0;transition:opacity .3s;z-index:200;pointer-events:none;}
+.toast.sh{opacity:1;}
+.nores{text-align:center;padding:40px;color:var(--tm);}
+#lov{position:fixed;inset:0;background:rgba(26,82,118,.92);z-index:997;display:none;align-items:center;justify-content:center;flex-direction:column;gap:14px;}
+.sp{width:44px;height:44px;border:4px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:spin .8s linear infinite;}
+@keyframes spin{to{transform:rotate(360deg)}}
+.lt{color:#fff;font-size:14px;font-weight:600;}
+</style>
+</head>
+<body>
+<div id="syncBar"></div>
+
+<div id="loginScreen">
+  <div class="lbox">
+    <div class="llogo">🏥</div>
+    <div class="ltitle">الخطة الاستراتيجية لقطاع الصحة العامة</div>
+    <div class="lsub">2026 – 2030 &nbsp;|&nbsp; وزارة الصحة – الكويت</div>
+    <button class="rbtn" id="bAdm" onclick="selRole('admin')">
+      <span class="rico">👔</span>
+      <div class="rtxt"><strong>وكيل القطاع</strong><span>يعدّل نسبة الإنجاز الرسمية والمسؤول الرسمي</span></div>
+    </button>
+    <button class="rbtn" id="bMgr" onclick="selRole('manager')">
+      <span class="rico">👤</span>
+      <div class="rtxt"><strong>مدير / شخص معني</strong><span>يُدخل النسبة التقديرية والمسؤول والملاحظات</span></div>
+    </button>
+    <div class="pwrap" id="pwrap">
+      <input type="password" id="pwin" placeholder="أدخل كلمة المرور" onkeydown="if(event.key==='Enter')doLogin()">
+      <div class="perr" id="perr">❌ كلمة المرور غير صحيحة</div>
+    </div>
+    <button class="lbtn" id="lbtn" onclick="doLogin()" disabled>دخول</button>
+  </div>
+</div>
+
+<div id="lov"><div class="sp"></div><div class="lt">جاري تحميل البيانات...</div></div>
+
+<div id="mhdr" style="display:none">
+  <div class="hdr">
+    <div><h1>🏥 متابعة تنفيذ الخطة الاستراتيجية لقطاع الصحة العامة</h1><p>2026 – 2030 | وزارة الصحة – الكويت</p></div>
+    <div style="display:flex;gap:8px;align-items:center">
+      <span class="rbadge" id="rbadge"></span>
+      <button class="obtn" onclick="logout()">خروج</button>
+    </div>
+  </div>
+  <div class="obar"><span class="odot"></span><span>متصل — أي تعديل يظهر فوراً لجميع المستخدمين</span></div>
+</div>
+
+<div id="mcnt" style="display:none">
+  <div class="ynav">
+    <div class="ytab act" onclick="swYear('2026',this)">2026</div>
+    <div class="ytab" onclick="swYear('2027',this)">2027</div>
+    <div class="ytab" onclick="swYear('2028',this)">2028</div>
+    <div class="ytab" onclick="swYear('2029',this)">2029</div>
+    <div class="ytab" onclick="swYear('2030',this)">2030</div>
+    <div class="ytab" onclick="swYear('all',this)">📊 جميع السنوات</div>
+  </div>
+  <div class="ssum">
+    <div class="stop">
+      <div class="ypw">
+        <div class="yprow"><span class="ypbl" id="ypbl">نسبة الإنجاز الرسمية لعام 2026</span><span class="yppct" id="yppct">0%</span></div>
+        <div class="ypbb"><div class="ypbf" id="ypbf" style="width:0%"></div></div>
+      </div>
+      <div class="dpw">
+        <div class="dptitle">📊 نسبة الإنجاز الرسمية لكل إدارة</div>
+        <div id="dsum"></div>
+      </div>
+    </div>
+    <div class="scards" id="scards"></div>
+  </div>
+  <div class="fwrap">
+    <div class="fg"><label>🔍</label><input type="text" id="srch" placeholder="بحث..." oninput="applyF()"></div>
+    <div class="fg"><label>الهدف:</label><select id="gf" onchange="applyF()"><option value="">جميع الأهداف</option></select></div>
+    <div class="fg"><label>الإدارة:</label><select id="df" onchange="applyF()"><option value="">جميع الإدارات</option></select></div>
+    <div class="fg"><label>الحالة:</label><select id="sf" onchange="applyF()"><option value="">الكل</option><option value="done">مكتمل</option><option value="prog">قيد التنفيذ</option><option value="not">لم يبدأ</option></select></div>
+  </div>
+  <div class="twrap" id="twrap"></div>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+const PASS = "Health@2026";
+const BP = [{"id": 1, "goal": "الهدف الاستراتيجي الأول", "dept": "إدارة الصحة العامة", "sub_goal": "تعزيز الصحة", "project": "1.         زيادة التغطية بالتطعيمات الموسمية (الانفلونزا) بنسبة 10% سنويا بكل منطقة صحية.", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 2, "goal": "الهدف الاستراتيجي الأول", "dept": "إدارة الصحة العامة", "sub_goal": "تعزيز الصحة", "project": "2.         خفض عدد الحالات الغير لائقة المتواجدة في الكويت بنسبة 10% بنهاية عام 2030", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 3, "goal": "الهدف الاستراتيجي الأول", "dept": "إدارة الصحة العامة", "sub_goal": "تعزيز الصحة", "project": "3.         إضافة فحص الزهري السنوي للفئات الخطرة مثل عمال المعاهد الصحية والصالونات", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 4, "goal": "الهدف الاستراتيجي الأول", "dept": "إدارة الصحة العامة", "sub_goal": "تعزيز الصحة", "project": "4.         توفير العيادة المتنقلة للفحص الطوعي والمشورة", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 5, "goal": "الهدف الاستراتيجي الأول", "dept": "إدارة الصحة العامة", "sub_goal": "تعزيز الصحة", "project": "5.         اشهار جدول التحصينات لكبار السن وللفئات الخطرة", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 6, "goal": "الهدف الاستراتيجي الأول", "dept": "إدارة الصحة العامة", "sub_goal": "تعزيز الصحة", "project": "6.         إدراج تطعيم HPV في المدراس (المرحلة الثاني)", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 7, "goal": "الهدف الاستراتيجي الأول", "dept": "إدارة الصحة العامة", "sub_goal": "تعزيز الصحة", "project": "7.         إدراج لقاح RSV للأمهات الحوامل", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 8, "goal": "الهدف الاستراتيجي الأول", "dept": "إدارة الصحة العامة", "sub_goal": "تعزيز الصحة", "project": "8.         المشاركة السنوية في اليوم العالمي (الايدز، الكبد الوبائي، أسبوع التحصين، تغير المناخ، الدرن)", "progress": {"2026": 40, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": "يوم سلامة الغذاء ، التدخين ،"}, {"id": 9, "goal": "الهدف الاستراتيجي الأول", "dept": "إدارة الصحة العامة", "sub_goal": "تعزيز الصحة", "project": "9.          إطلاق برنامج الرقابة على مياه السبيل", "progress": {"2026": 30, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 10, "goal": "الهدف الاستراتيجي الأول", "dept": "إدارة الصحة العامة", "sub_goal": "تعزيز الصحة", "project": "10.     زيادة الحملات الاستباقية لمكافحة الحشرات والقوارض بنسبة 10% سنويا في كل منطقة صحية.", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 11, "goal": "الهدف الاستراتيجي الأول", "dept": "إدارة الصحة العامة", "sub_goal": "تعزيز الصحة", "project": "11.     التوسع في إجمالي عمليات صحة البيئة (عينات المياه – المدارس والحضانات – جولات الاصحاح البيئي) لكل منطقة صحية بنسبة 5% سنوياً.", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 12, "goal": "الهدف الاستراتيجي الأول", "dept": "إدارة الصحة العامة", "sub_goal": "تعزيز الصحة", "project": "12.     زيادة الفئات المشمولة في تطعيم الحزام الناري + زيادة نسبة التغطية 100% من الفئات المستهدفة", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 13, "goal": "الهدف الاستراتيجي الأول", "dept": "إدارة الصحة العامة", "sub_goal": "تعزيز الصحة", "project": "13.     تنظيم عدد (6) حملات للتوعية بالإصحاح البيئي", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 14, "goal": "الهدف الاستراتيجي الأول", "dept": "مركز الكويت للوقاية من الأمراض ومكافحتها", "sub_goal": "تعزيز الصحة", "project": "14.     تأهيل المختبرات المرجعية للصحة العامة فيما يتعلق بمقاومة مضادات الميكروبات.", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 15, "goal": "الهدف الاستراتيجي الأول", "dept": "مركز الكويت للوقاية من الأمراض ومكافحتها", "sub_goal": "تعزيز الصحة", "project": "15.     تأسيس مشروع قائمة الأبحاث العلمية لمقاومة مضادات الحيوية", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 16, "goal": "الهدف الاستراتيجي الأول", "dept": "مركز الكويت للوقاية من الأمراض ومكافحتها", "sub_goal": "تعزيز الصحة", "project": "16.     مواد إعلامية وفيديوهات وبودكاست، عدد (12)", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 17, "goal": "الهدف الاستراتيجي الأول", "dept": "مركز الكويت للوقاية من الأمراض ومكافحتها", "sub_goal": "تعزيز الصحة", "project": "17.     انشاء حسابات على مواقع التواصل واستهداف عدد (1000) متابع أو (25,000) مشاهدة سنوياً", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 18, "goal": "الهدف الاستراتيجي الأول", "dept": "مركز الكويت للوقاية من الأمراض ومكافحتها", "sub_goal": "تعزيز الصحة", "project": "18.     إطلاق موقع توعوي جماهيري لجميع مواضيع الصحة العامة", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 19, "goal": "الهدف الاستراتيجي الأول", "dept": "مركز الكويت للوقاية من الأمراض ومكافحتها", "sub_goal": "تعزيز الصحة", "project": "19.      الحملات الوطنية والأيام الصحية العالمية عدد ( 1 ) – مقاومة مضادات المكيروبات", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 20, "goal": "الهدف الاستراتيجي الأول", "dept": "مركز الكويت للوقاية من الأمراض ومكافحتها", "sub_goal": "تعزيز الصحة", "project": "20.     تأسيس الفريق الوطني للاستجابة السريعة لطوارئ الصحة العامة، يمثل عدة جهات بالدولة", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 21, "goal": "الهدف الاستراتيجي الأول", "dept": "إدارة منع العدوى والتعقيم", "sub_goal": "تعزيز الصحة", "project": "21.  استحداث نظام تتبع الكتروني (TDOC) للتأكد من كفاءة تعقيم الادوات الجراحية لأقسام التعقيم لعدد (4) مستشفيات", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 22, "goal": "الهدف الاستراتيجي الأول", "dept": "إدارة منع العدوى والتعقيم", "sub_goal": "تعزيز الصحة", "project": "22.  رفع كفاءة خدمات التنظيف والتطهير المقدمة في جميع المستشفيات للوصول للمستويات العالمية وتحقيق نسبة امتثال لا تقل عن 95% وفق نتائج التدقيق البيئي.", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 23, "goal": "الهدف الاستراتيجي الأول", "dept": "إدارة منع العدوى والتعقيم", "sub_goal": "تعزيز الصحة", "project": "23.  استحداث تطبيق رصد العدوى المكتسبة في المستشفيات", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 24, "goal": "الهدف الاستراتيجي الأول", "dept": "إدارة منع العدوى والتعقيم", "sub_goal": "تعزيز الصحة", "project": "24.  تقليل عدوى مجرى الدم المرتبطة بالقسطرة الوريدية المركزية بالعنايات المركزة للبالغين بالمستشفيات العامة بالكويت بنسبة 70% (2024-2028). زيادة المستشفيات بمقدار (2) مستشفى سنويا وخفض معدل انتشار الميكروبات المقاومة للمضادات الحيوية لتشمل فطر Candida auris", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 25, "goal": "الهدف الاستراتيجي الأول", "dept": "إدارة منع العدوى والتعقيم", "sub_goal": "تعزيز الصحة", "project": "25.  تطبيق بروتوكول ازالة الاستيطان الميكروبي بمادة الكلورهيكسيدين (CHG 2%) في وحدات العناية المركزة للأطفال والخدج لخفض معدلات عدوى مجرى الدم، زيادة عدد المستشفيات بمقدار (2) مستشفى سنويا", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 26, "goal": "الهدف الاستراتيجي الأول", "dept": "إدارة منع العدوى والتعقيم", "sub_goal": "تعزيز الصحة", "project": "26.  خفض عدوى المواضع الجراحية السطحية ( SSI Superficial) من خلال تطبيق بروتوكول ازالة الاستيطان الميكروبي بمادة الكلورهيكسيدين (CHG 2%)، زيادة عدد المستشفيات بمقدار (1-2) مستشفى سنويا", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 27, "goal": "الهدف الاستراتيجي الأول", "dept": "إدارة منع العدوى والتعقيم", "sub_goal": "تعزيز الصحة", "project": "27.  التطبيق الإلكتروني لبرنامج نظافة الأيدي متعدد الوسائط", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 28, "goal": "الهدف الاستراتيجي الأول", "dept": "إدارة منع العدوى والتعقيم", "sub_goal": "تعزيز الصحة", "project": "28.  تعزيز ممارسات تنظيف وتطهير حضانات الخدج (حديثي الولادة)", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 29, "goal": "الهدف الاستراتيجي الأول", "dept": "إدارة منع العدوى والتعقيم", "sub_goal": "تعزيز الصحة", "project": "-    رفع معدل الالتزام ببروتوكولات تنظيف وتطهير الحضانات الى 95%", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 30, "goal": "الهدف الاستراتيجي الأول", "dept": "إدارة منع العدوى والتعقيم", "sub_goal": "تعزيز الصحة", "project": "-    رفع نسبة الاستفادة من دورات التدريب اكثر من 90%", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 31, "goal": "الهدف الاستراتيجي الأول", "dept": "إدارة منع العدوى والتعقيم", "sub_goal": "تعزيز الصحة", "project": "-    ادراج التدريب ضمن برامجOrientation لتمريض عناية الخدج", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 32, "goal": "الهدف الاستراتيجي الأول", "dept": "إدارة منع العدوى والتعقيم", "sub_goal": "تعزيز الصحة", "project": "-    تقليل نسبة المسحات البيئية الايجابية بمقدار 50%", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 33, "goal": "الهدف الاستراتيجي الأول", "dept": "إدارة منع العدوى والتعقيم", "sub_goal": "تعزيز الصحة", "project": "-    تقليل معدلات العدوى المكتسبة 20%", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 34, "goal": "الهدف الاستراتيجي الأول", "dept": "إدارة منع العدوى والتعقيم", "sub_goal": "تعزيز الصحة", "project": "29.  تقليل معدل عدوى موضع الجراحة عبر تطبيق حزمة تدخلات وقائية كاملة", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 35, "goal": "الهدف الاستراتيجي الأول", "dept": "إدارة منع العدوى والتعقيم", "sub_goal": "تعزيز الصحة", "project": "-    تقليل معدل عدوى موضع الجراحة بأكثر من 30% عن خط الأساس", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 36, "goal": "الهدف الاستراتيجي الأول", "dept": "إدارة منع العدوى والتعقيم", "sub_goal": "تعزيز الصحة", "project": "-    تحقيق امتثال للمضاد الحيوي المناسب إلى 90%", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 37, "goal": "الهدف الاستراتيجي الأول", "dept": "إدارة منع العدوى والتعقيم", "sub_goal": "تعزيز الصحة", "project": "30.        تقليل معدلات العدوى المرتبطة بغسيل الكلى", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 38, "goal": "الهدف الاستراتيجي الأول", "dept": "إدارة منع العدوى والتعقيم", "sub_goal": "تعزيز الصحة", "project": "-    رفع معدل الالتزام بتطبيق بروتوكولات وحدات غسيل الكلى إلى > 95%", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 39, "goal": "الهدف الاستراتيجي الأول", "dept": "إدارة منع العدوى والتعقيم", "sub_goal": "تعزيز الصحة", "project": "-    تقليل معدل العدوى المرتبطة لغسيل الكلى ب 20%", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 40, "goal": "الهدف الاستراتيجي الأول", "dept": "إدارة منع العدوى والتعقيم", "sub_goal": "تعزيز الصحة", "project": "31.  رفع مستوى الالتزام بنظافة الأيدي بنسبة 5% سنوياً في كل المستشفيات.", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 41, "goal": "الهدف الاستراتيجي الأول", "dept": "إدارة منع العدوى والتعقيم", "sub_goal": "تعزيز الصحة", "project": "32.  زيادة نسبة التزام مزاولي المهنة بنظافة الايدي وتقليل معدلات العدوى المرتبطة بالرعاية الصحية بالمستشفيات والمراكز الصحية إلى 80% بنهاية عام 2030.", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 42, "goal": "الهدف الاستراتيجي الأول", "dept": "إدارة منع العدوى والتعقيم", "sub_goal": "تعزيز الصحة", "project": "33.  فيديوهات وبروشورات توعوية، عدد (10) سنويا", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 43, "goal": "الهدف الاستراتيجي الأول", "dept": "إدارة منع العدوى والتعقيم", "sub_goal": "تعزيز الصحة", "project": "34.  اختبارات فحص الاقنعة التنفسية لمقدمي الخدمات الصحية  Respiratory fit testing", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 44, "goal": "الهدف الاستراتيجي الأول", "dept": "إدارة الصحة الاجتماعية", "sub_goal": "تعزيز الصحة", "project": "35.  تطوير برنامج الفحص الطبي ما قبل الزواج (إضافة الفحص الجيني الاختياري)", "progress": {"2026": 10, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 45, "goal": "الهدف الاستراتيجي الأول", "dept": "إدارة الصحة الاجتماعية", "sub_goal": "تعزيز الصحة", "project": "36.  إعداد عدد (4) فيديوهات وبروشورات توعوية عن (المرأة المعنفة – حمل السفاح – العنف ضد الأطفال – طويلي المكوث ، أو حسب ما تقتضيه الحاجة) سنوياً.", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 46, "goal": "الهدف الاستراتيجي الأول", "dept": "إدارة الوقاية من الإشعاع", "sub_goal": "تعزيز الصحة", "project": "37.  تعزيز قدرات الاستعداد والاستجابة للمخاطر الصحية عن طريق تحديث محطات الرصد الإشعاعي لتشمل مؤشرات أخرى (سرعة الرياح – درجة الحرارة)", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 47, "goal": "الهدف الاستراتيجي الأول", "dept": "إدارة الوقاية من الإشعاع", "sub_goal": "تعزيز الصحة", "project": "38.  التوعية المجتمعية بالمخاطر الإشعاعية (تشمل بروشوارات وبوسترات، فيديوهات) للعاملين المختصين، والعاملين المتعرضين، والجمهور عدد (4) سنويا.", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 48, "goal": "الهدف الاستراتيجي الأول", "dept": "إدارة الوقاية من الإشعاع", "sub_goal": "تعزيز الصحة", "project": "39.  مشروع الرقابة على ساحات الخردة والسكراب وتركيب بوابات إشعاعية", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 49, "goal": "الهدف الاستراتيجي الأول", "dept": "إدارة الوقاية من الإشعاع", "sub_goal": "تعزيز الصحة", "project": "40.  أجهزة سحب الهواء لقياس تركيز المواد المشعة عدد (5 أجهزة) low & high volume", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 50, "goal": "الهدف الاستراتيجي الأول", "dept": "إدارة الوقاية من الإشعاع", "sub_goal": "تعزيز الصحة", "project": "41.  تفعيل الرقابة الإشعاعية على المنافذ الحدودية (الجوية /برية/بحرية)", "progress": {"2026": 66, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": "تفعيل المنافذ البرية والبحرية وباقي المطار"}, {"id": 51, "goal": "الهدف الاستراتيجي الأول", "dept": "إدارة الوقاية من الإشعاع", "sub_goal": "تعزيز الصحة", "project": "42.  قياس الجرعات الإشعاعية للأطراف والعيون في المجال الإشعاعي", "progress": {"2026": 100, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": "تم إطلاق الخدمة"}, {"id": 52, "goal": "الهدف الاستراتيجي الأول", "dept": "إدارة الوقاية من الإشعاع", "sub_goal": "تعزيز الصحة", "project": "43.  استحداث خدمة whole body counter للتعرضات الإشعاعية الداخلية", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 53, "goal": "الهدف الاستراتيجي الأول", "dept": "إدارة الوقاية من الإشعاع", "sub_goal": "تعزيز الصحة", "project": "44.  مشروع المسح والتحليل الإشعاعي للرسوبيات البحرية في جون الكويت.", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 54, "goal": "الهدف الاستراتيجي الأول", "dept": "إدارة التغذية والإطعام", "sub_goal": "تعزيز الصحة", "project": "45.  خفض معدل زيادة الوزن والسمنة لدى الأطفال (5-18) سنة والبالغين من عمر 19 سنة وأكثر بنسبة 5%", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 55, "goal": "الهدف الاستراتيجي الأول", "dept": "إدارة التغذية والإطعام", "sub_goal": "تعزيز الصحة", "project": "46.  تصميم وتنفيذ برنامج متخصص للتغذية النشاط البدني يهدف إلى تحسين الصحة العامة وزيادة مستوى الوعي التغذوي، تغيير العادات الغذائية، وزيادة النشاط البدني.", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 56, "goal": "الهدف الاستراتيجي الأول", "dept": "إدارة التغذية والإطعام", "sub_goal": "تعزيز الصحة", "project": "47.  زيادة عدد المترددين على جميع عيادات التغذية العلاجية بنسبة 25% لكل مركز صحي أو مستشفى", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 57, "goal": "الهدف الاستراتيجي الأول", "dept": "إدارة التغذية والإطعام", "sub_goal": "تعزيز الصحة", "project": "48.  استمرار برنامج الترصد التغذوي (تقرير سنوي مفصل)", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 58, "goal": "الهدف الاستراتيجي الأول", "dept": "إدارة التغذية والإطعام", "sub_goal": "تعزيز الصحة", "project": "49.  إعداد دليل الوصفات الصحية والقيم الغذائية نسخ ورقية وإلكترونية: باللغة الإنجليزية (للنساء الحوامل، لمرضى السكري، DASH) ليصبح باللغتين العربية والانجليزية.", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 59, "goal": "الهدف الاستراتيجي الأول", "dept": "إدارة التغذية والإطعام", "sub_goal": "تعزيز الصحة", "project": "50.  المشاركة الفاعلة في الفعاليات العالمية ذات الصلة بمجال التغذية والاطعام بما يسهم في تعزيز صحة المجتمع (الوقاية من الأمراض المزمنة غير المعدية، الرضاعة الطبيعية)", "progress": {"2026": 50, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": "سلامة الغذاء"}, {"id": 60, "goal": "الهدف الاستراتيجي الأول", "dept": "إدارة التغذية والإطعام", "sub_goal": "تعزيز الصحة", "project": "51.  إعداد وتحديث وتطوير عدد 10 بروشورات (ورقي وإلكتروني) تستهدف التوعية المجتمعية بالتغذية الصحية، سنوياً.", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 61, "goal": "الهدف الاستراتيجي الأول", "dept": "إدارة التغذية والإطعام", "sub_goal": "تعزيز الصحة", "project": "52.  إشهار مركز لخدمات الرضاعة الطبيعية (مستشفى الأمومة والطفولة) بمنطقة الأحمدي الصحية - الأول من نوعه في الشرق الأوسط.", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 62, "goal": "الهدف الاستراتيجي الثاني", "dept": "إدارة الصحة العامة", "sub_goal": "تحسين الجودة", "project": "1.      إنشاء مركز فحص عمالة جديد بمستشفى الفروانية", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 63, "goal": "الهدف الاستراتيجي الثاني", "dept": "إدارة الصحة العامة", "sub_goal": "تحسين الجودة", "project": "2.      زيادة عدد عيادات التطعيم في المراكز الصحية بمقدار 30 عيادة بالإضافة إلى المستشفيات والعيادات خارج وزارة الصحة مثل النفط والدفاع.", "progress": {"2026": 53, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": "افتتاح 16 عيادة حتى 8 يونيو"}, {"id": 64, "goal": "الهدف الاستراتيجي الثاني", "dept": "إدارة الصحة العامة", "sub_goal": "تحسين الجودة", "project": "3.      زيادة عدد عيادات وحدة مكافحة الدرن إلى ) (5 عيادات خارجية بالإضافة إلى المركز الرئيسي بالشويخ.", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 65, "goal": "الهدف الاستراتيجي الثاني", "dept": "إدارة الصحة العامة", "sub_goal": "تحسين الجودة", "project": "4.      تطوير خدمات عيادات الفحص الطوعي لتشمل الفحص السريع لأمراض أخرى.", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 66, "goal": "الهدف الاستراتيجي الثاني", "dept": "إدارة الصحة العامة", "sub_goal": "تحسين الجودة", "project": "5.      الحصول على إعتماد  ISO/IEC 17025 لمختبرات الصحة العامة", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 67, "goal": "الهدف الاستراتيجي الثاني", "dept": "إدارة التغذية والإطعام", "sub_goal": "تحسين الجودة", "project": "6.      تحسين الجودة والسلامة الغذائية (HACCP/ ISO 22000 ) – إعادة تقييم بعد 3 سنوات لجميع مطابخ مستشفيات وزارة الصحة", "progress": {"2026": 100, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 68, "goal": "الهدف الاستراتيجي الثاني", "dept": "إدارة التغذية والإطعام", "sub_goal": "تحسين الجودة", "project": "7.      توفير عدد (3) غرف للرضاعة الطبيعية في مطار الكويت الجديد (T2)", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 69, "goal": "الهدف الاستراتيجي الثاني", "dept": "إدارة التغذية والإطعام", "sub_goal": "تحسين الجودة", "project": "8.      توفير أجهزة حساب قياس مكونات الجسم في عدد (70) عيادة", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 70, "goal": "الهدف الاستراتيجي الثاني", "dept": "إدارة التغذية والإطعام", "sub_goal": "تحسين الجودة", "project": "9.      اعتماد وتجديد اعتماد المستشفيات الصديقة للطفل (جميع المستشفيات التي يوجد بها أقسام ولادة) عدد (5) مستشفيات", "progress": {"2026": 100, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": "مستشفى العدان ، طيبة حتى 8 يونيو"}, {"id": 71, "goal": "الهدف الاستراتيجي الثاني", "dept": "إدارة منع العدوى والتعقيم", "sub_goal": "تحسين الجودة", "project": "10.  رفع كفاءة أقسام التعقيم بالمستشفيات والمراكز الصحية وفق المعايير المطبقة بقسم التعقيم المركزي", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 72, "goal": "الهدف الاستراتيجي الثاني", "dept": "إدارة منع العدوى والتعقيم", "sub_goal": "تحسين الجودة", "project": "11.  مشروع التداول السليم للمناظير الطبية", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 73, "goal": "الهدف الاستراتيجي الثاني", "dept": "إدارة منع العدوى والتعقيم", "sub_goal": "تحسين الجودة", "project": "12.  مبادرة توحيد أطقم الغيارات في جميع أقسام التعقيم بالمستشفيات", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 74, "goal": "الهدف الاستراتيجي الثاني", "dept": "إدارة منع العدوى والتعقيم", "sub_goal": "تحسين الجودة", "project": "13.  مشروع حصر أجهزة التعقيم خارج أقسام وشعب التعقيم", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 75, "goal": "الهدف الاستراتيجي الثاني", "dept": "إدارة منع العدوى والتعقيم", "sub_goal": "تحسين الجودة", "project": "14.  مبادرة توحيد سياسة التخزين ومدة الصلاحية للمواد الطبية التي يتم تطهيرها فقط دون تعقيم", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 76, "goal": "الهدف الاستراتيجي الثاني", "dept": "إدارة منع العدوى والتعقيم", "sub_goal": "تحسين الجودة", "project": "15.  مبادرة توحيد التعامل مع رقاع الجمجمة", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 77, "goal": "الهدف الاستراتيجي الثاني", "dept": "إدارة منع العدوى والتعقيم", "sub_goal": "تحسين الجودة", "project": "16.  مبادرة وبمتابعة جودة معالجة المياه في أقسام وشعب التعقيم.", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 78, "goal": "الهدف الاستراتيجي الثاني", "dept": "إدارة منع العدوى والتعقيم", "sub_goal": "تحسين الجودة", "project": "17.  تطبيق أنظمة إدارة الجودة بجميع الخدمات المقدمة بإدارة منع العدوى والتعقيم.", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 79, "goal": "الهدف الاستراتيجي الثاني", "dept": "مركز الكويت للوقاية من الأمراض ومكافحتها", "sub_goal": "تحسين الجودة", "project": "18.  إطلاق برنامج OPAT لإعطاء المضادات الحيوية للمرضى الغير منومين", "progress": {"2026": 30, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": "صدور قرار وزاري ، تقييم المستشفيات ، بدأ العمل ببعض المستشفيات"}, {"id": 80, "goal": "الهدف الاستراتيجي الثاني", "dept": "مركز الكويت للوقاية من الأمراض ومكافحتها", "sub_goal": "تحسين الجودة", "project": "19.  إطلاق نسخة انجليزية من خدمة خريطة المسافر", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 81, "goal": "الهدف الاستراتيجي الثاني", "dept": "إدارة الصحة الاجتماعية", "sub_goal": "تحسين الجودة", "project": "20.  خفض مواعيد انتظار اختبارات الذكاء بمعدل لا يتجاوز أسبوعين", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 82, "goal": "الهدف الاستراتيجي الثاني", "dept": "إدارة الصحة الاجتماعية", "sub_goal": "تحسين الجودة", "project": "21.  زيادة عدد عيادة واحدة لاختبارات الذكاء في المناطق الصحية.", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 83, "goal": "الهدف الاستراتيجي الثاني", "dept": "إدارة الوقاية من الإشعاع", "sub_goal": "تحسين الجودة", "project": "22.  الحصول على شهادات الجودة لمختبر الإشعاع والإدارة  ISO9001& ISO17025", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 84, "goal": "الهدف الاستراتيجي الثاني", "dept": "إدارة الوقاية من الإشعاع", "sub_goal": "تحسين الجودة", "project": "23.  إصدار ضبطية قضائية بالأسماء (بدل من المسمى الوظيفي فقط) وتحديثها سنوياً.", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 85, "goal": "الهدف الاستراتيجي الثاني", "dept": "إدارة الوقاية من الإشعاع", "sub_goal": "تحسين الجودة", "project": "24.  تنظيم عمليات التفتيش (المحاضر – الهويات – الفيست الموحد)", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 86, "goal": "الهدف الاستراتيجي الثاني", "dept": "إدارة الوقاية من الإشعاع", "sub_goal": "تحسين الجودة", "project": "25.  فصل قسم التراخيص وقسم التفاتيش، ودمج المؤينة وغير المؤينة", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 87, "goal": "الهدف الاستراتيجي الثالث", "dept": "إدارة منع العدوى والتعقيم", "sub_goal": "التحول الرقمي", "project": "1.      انشاء قاعدة بيانات رقمية تتضمن جميع العاملين بإدارة منع العدوى والتعقيم (المسمى الوظيفي – جهة العمل \"قسم -وحدة\")", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 88, "goal": "الهدف الاستراتيجي الثالث", "dept": "إدارة منع العدوى والتعقيم", "sub_goal": "التحول الرقمي", "project": "2.      إطلاق المنصة الالكترونية لإدارة منع العدوى", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 89, "goal": "الهدف الاستراتيجي الثالث", "dept": "إدارة منع العدوى والتعقيم", "sub_goal": "التحول الرقمي", "project": "3.      تطوير برنامج التعليم الإلكتروني E learning في مجال منع العدوى وربطه مع موقع وزارة الصحة", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 90, "goal": "الهدف الاستراتيجي الثالث", "dept": "مركز الكويت للوقاية من الأمراض ومكافحتها", "sub_goal": "التحول الرقمي", "project": "4.      انشاء قاعدة بيانات رقمية تتضمن جميع العاملين بمركز الكويت للوقاية من الأمراض ومكافحتها (المسمى الوظيفي – جهة العمل \"قسم -وحدة\")", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 91, "goal": "الهدف الاستراتيجي الثالث", "dept": "مركز الكويت للوقاية من الأمراض ومكافحتها", "sub_goal": "التحول الرقمي", "project": "5.      إعداد وإطلاق المرحلة التجريبية لبرنامج SORMAS للإبلاغ عن الأمراض المعدية", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 92, "goal": "الهدف الاستراتيجي الثالث", "dept": "مركز الكويت للوقاية من الأمراض ومكافحتها", "sub_goal": "التحول الرقمي", "project": "6.      لوحة قيادة إرشادية للربط بين الجهات المعنية  COP", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 93, "goal": "الهدف الاستراتيجي الثالث", "dept": "مركز الكويت للوقاية من الأمراض ومكافحتها", "sub_goal": "التحول الرقمي", "project": "7.      إطلاق منصة (رصد) لمقاومة المضادات", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 94, "goal": "الهدف الاستراتيجي الثالث", "dept": "إدارة الصحة الاجتماعية", "sub_goal": "التحول الرقمي", "project": "8.      تحسين وتطوير جودة برنامج الفحص الطبي قبل الزواج (إشعارات سهل للأمراض الغير مانعة للزواج)", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 95, "goal": "الهدف الاستراتيجي الثالث", "dept": "إدارة الصحة الاجتماعية", "sub_goal": "التحول الرقمي", "project": "9.      الربط الالكتروني بنماذج موحدة مع جميع أقسام الخدمة الاجتماعية في المستشفيات", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 96, "goal": "الهدف الاستراتيجي الثالث", "dept": "إدارة الوقاية من الإشعاع", "sub_goal": "التحول الرقمي", "project": "10.  قاعدة بيانات ونظام تتبع بمختبر القياسات البيئية بإدارة الوقاية من الإشعاع.", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 97, "goal": "الهدف الاستراتيجي الثالث", "dept": "إدارة الوقاية من الإشعاع", "sub_goal": "التحول الرقمي", "project": "11.  انشاء قاعدة بيانات رقمية تتضمن جميع العاملين بإدارة الوقاية من الإشعاع (المسمى الوظيفي – جهة العمل \"قسم -وحدة\")", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 98, "goal": "الهدف الاستراتيجي الثالث", "dept": "إدارة الوقاية من الإشعاع", "sub_goal": "التحول الرقمي", "project": "12.  توسيع منصة خدمات التراخيص الالكترونية", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 99, "goal": "الهدف الاستراتيجي الثالث", "dept": "إدارة الوقاية من الإشعاع", "sub_goal": "التحول الرقمي", "project": "13.  تفعيل برنامج RAIS Plus ورقمنة خدمات الإدارة ذات الصلة", "progress": {"2026": 20, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 100, "goal": "الهدف الاستراتيجي الثالث", "dept": "إدارة الصحة العامة", "sub_goal": "التحول الرقمي", "project": "14.  إشعارات التذكير بمواعيد التطعيم", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 101, "goal": "الهدف الاستراتيجي الثالث", "dept": "إدارة الصحة العامة", "sub_goal": "التحول الرقمي", "project": "15.  إضافة خدمة مواعيد فحص العمالة عبر تطبيق سهل، مع اشعارات النتيجة", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 102, "goal": "الهدف الاستراتيجي الثالث", "dept": "إدارة الصحة العامة", "sub_goal": "التحول الرقمي", "project": "16.  إدراج الذكاء الصناعي لقسم الأشعة بفحص العمالة الوافدة", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 103, "goal": "الهدف الاستراتيجي الثالث", "dept": "إدارة الصحة العامة", "sub_goal": "التحول الرقمي", "project": "17.  برنامج الكتروني للمراقبة الصحية للقادمين إلى دولة الكويت", "progress": {"2026": 80, "2027": 20, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 104, "goal": "الهدف الاستراتيجي الثالث", "dept": "إدارة الصحة العامة", "sub_goal": "التحول الرقمي", "project": "18.  إدراج تطبيق (إصحاح) وربطه مع تطبيق سالم", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 105, "goal": "الهدف الاستراتيجي الثالث", "dept": "إدارة الصحة العامة", "sub_goal": "التحول الرقمي", "project": "19.  ربط نتائج مختبرات الصحة العامة بتطبيق سهل", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 106, "goal": "الهدف الاستراتيجي الثالث", "dept": "إدارة الصحة العامة", "sub_goal": "التحول الرقمي", "project": "20.  رقمنة خدمة فحص العاملات في دور الحضانة بالمراكز الصحية على النظام الآلي لمتداولي الأغذية", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 107, "goal": "الهدف الاستراتيجي الثالث", "dept": "إدارة الصحة العامة", "sub_goal": "التحول الرقمي", "project": "21.  رقمنة خدمة فحص مجهزات الأغذية في رياض الطفال", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 108, "goal": "الهدف الاستراتيجي الثالث", "dept": "إدارة الصحة العامة", "sub_goal": "التحول الرقمي", "project": "22.   خدمة التذكير بقرب انتهاء صلاحية شهادات متداولي الأغذية", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 109, "goal": "الهدف الاستراتيجي الثالث", "dept": "إدارة الصحة العامة", "sub_goal": "التحول الرقمي", "project": "23.  الربط الإلكتروني مع وزارة الشئون في تراخيص دور الحضانة الخاصة", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 110, "goal": "الهدف الاستراتيجي الثالث", "dept": "إدارة الصحة العامة", "sub_goal": "التحول الرقمي", "project": "24.   إصدار شهادات الكترونية بالتطعيمات السابقة", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 111, "goal": "الهدف الاستراتيجي الثالث", "dept": "إدارة التغذية والإطعام", "sub_goal": "التحول الرقمي", "project": "25.  تطبيق برنامج الترصد التغذوي إلكترونيا", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 112, "goal": "الهدف الاستراتيجي الثالث", "dept": "إدارة التغذية والإطعام", "sub_goal": "التحول الرقمي", "project": "26.  إنشاء موقع الكتروني للإدارة مربوط مع صفحة خدمات قطاع الصحة العامة", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 113, "goal": "الهدف الاستراتيجي الثالث", "dept": "إدارة التغذية والإطعام", "sub_goal": "التحول الرقمي", "project": "27.  خدمة صرف المكملات الغذائية إلكترونيا للمراجعين", "progress": {"2026": 100, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 114, "goal": "الهدف الاستراتيجي الثالث", "dept": "إدارة التغذية والإطعام", "sub_goal": "التحول الرقمي", "project": "28.  خدمة حجز المواعيد أونلاين للعيادات الخارجية", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 115, "goal": "الهدف الاستراتيجي الثالث", "dept": "إدارة التغذية والإطعام", "sub_goal": "التحول الرقمي", "project": "29.  زيادة عدد المتابعين بوسائل التواصل الاجتماعي بنسبة 25% سنويا (انستجرام)", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 116, "goal": "الهدف الاستراتيجي الرابع", "dept": "إدارة منع العدوى والتعقيم", "sub_goal": "الحوكمة", "project": "1.      حصر وتحديث جميع القوانين والقرارات الوزارية بإدارة منع العدوى والتعقيم", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 117, "goal": "الهدف الاستراتيجي الرابع", "dept": "إدارة منع العدوى والتعقيم", "sub_goal": "الحوكمة", "project": "2.      حصر وتحديث جميع السياسات التشغيلية، الأدلة الإرشادية، السياسات، البروتوكولات، بإدارة منع العدوى والتعقيم", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 118, "goal": "الهدف الاستراتيجي الرابع", "dept": "إدارة منع العدوى والتعقيم", "sub_goal": "الحوكمة", "project": "-          مراجعة سياسات وإجراءات منع العدوى بنسبة 100%", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 119, "goal": "الهدف الاستراتيجي الرابع", "dept": "إدارة منع العدوى والتعقيم", "sub_goal": "الحوكمة", "project": "-          تحديث عدد (20) بروتوكول سنوياً", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 120, "goal": "الهدف الاستراتيجي الرابع", "dept": "إدارة منع العدوى والتعقيم", "sub_goal": "الحوكمة", "project": "-          إصدار عدد (12) سنويا", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 121, "goal": "الهدف الاستراتيجي الرابع", "dept": "إدارة منع العدوى والتعقيم", "sub_goal": "الحوكمة", "project": "-          استحداث سياسات جديدة وفقا للمستجدات", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 122, "goal": "الهدف الاستراتيجي الرابع", "dept": "إدارة منع العدوى والتعقيم", "sub_goal": "الحوكمة", "project": "-          توحيد النماذج والملاحق", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 123, "goal": "الهدف الاستراتيجي الرابع", "dept": "إدارة منع العدوى والتعقيم", "sub_goal": "الحوكمة", "project": "-          إدخال سياسات في النظام الإلكتروني لإدارة منع العدوى بوزارة الصحة", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 124, "goal": "الهدف الاستراتيجي الرابع", "dept": "مركز الكويت للوقاية من الأمراض ومكافحتها", "sub_goal": "الحوكمة", "project": "3.      حصر وتحديث جميع القوانين والقرارات الوزارية والسياسات التشغيلية، الأدلة الإرشادية، والبروتوكولات بمركز الكويت للوقاية من الأمراض ومكافحتها", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 125, "goal": "الهدف الاستراتيجي الرابع", "dept": "مركز الكويت للوقاية من الأمراض ومكافحتها", "sub_goal": "الحوكمة", "project": "4.      خطة طوارئ الصحة العامة(All-Hazards Plan)", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 126, "goal": "الهدف الاستراتيجي الرابع", "dept": "مركز الكويت للوقاية من الأمراض ومكافحتها", "sub_goal": "الحوكمة", "project": "5.      حصر وتحديث جميع الشراكات والاتفاقيات بمركز الكويت للوقاية من الأمراض ومكافحتها عدد (20) اتفاقية تعاون مع جهات داخلية وخارجية في 8 محاور رئيسية", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 127, "goal": "الهدف الاستراتيجي الرابع", "dept": "مركز الكويت للوقاية من الأمراض ومكافحتها", "sub_goal": "الحوكمة", "project": "6.      إطلاق برنامج Firstline بالتعاون مع منظمة الصحة العالمية او برنامج محلي للأدلة الإرشادية للمضادات الحيوية في وزارة الصحة", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 128, "goal": "الهدف الاستراتيجي الرابع", "dept": "مركز الكويت للوقاية من الأمراض ومكافحتها", "sub_goal": "الحوكمة", "project": "7.      إعداد مرجع يتضمن قائمة يتم تحديثها بشأن توفر Stockpileمعدات الطوارئ", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 129, "goal": "الهدف الاستراتيجي الرابع", "dept": "مركز الكويت للوقاية من الأمراض ومكافحتها", "sub_goal": "الحوكمة", "project": "8.      تأسيس مجلس إدارة KCDC", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 130, "goal": "الهدف الاستراتيجي الرابع", "dept": "مركز الكويت للوقاية من الأمراض ومكافحتها", "sub_goal": "الحوكمة", "project": "9.      تمثيل المركز في (لجنة التحصين - لجنة الصحة الواحدة)", "progress": {"2026": 100, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": "صدور قرارين وزاريين"}, {"id": 131, "goal": "الهدف الاستراتيجي الرابع", "dept": "مركز الكويت للوقاية من الأمراض ومكافحتها", "sub_goal": "الحوكمة", "project": "10.  حصر وتحديث جميع القوانين والقرارات الوزارية والسياسات التشغيلية، بإدارة الصحة الاجتماعية.", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 132, "goal": "الهدف الاستراتيجي الرابع", "dept": "إدارة التغذية والإطعام", "sub_goal": "الحوكمة", "project": "11.  حصر وتحديث جميع السياسات التشغيلية، الأدلة الإرشادية، السياسات، البروتوكولات، بإدارة التغذية والاطعام", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 133, "goal": "الهدف الاستراتيجي الرابع", "dept": "إدارة التغذية والإطعام", "sub_goal": "الحوكمة", "project": "12.  تطبيق فصل التغذية العلاجية عن خدمات الاطعام في 50% من المستشفيات", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 134, "goal": "الهدف الاستراتيجي الرابع", "dept": "إدارة التغذية والإطعام", "sub_goal": "الحوكمة", "project": "13.  تطوير بنود وطرح مناقصات التغذية والإطعام وترستيها على المجموعات الأربعة", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 135, "goal": "الهدف الاستراتيجي الرابع", "dept": "إدارة التغذية والإطعام", "sub_goal": "الحوكمة", "project": "14.  تنظيم طلب وصرف المكملات الغذائية عبر لجنة تمثل كل الجهات ذات الصلة", "progress": {"2026": 100, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 136, "goal": "الهدف الاستراتيجي الرابع", "dept": "إدارة التغذية والإطعام", "sub_goal": "الحوكمة", "project": "15.  إعداد / تحديث خطة الطوارئ لكل أقسام التغذية واقسام الإطعام، والمخزون الاستراتيجي في كل مستشفى", "progress": {"2026": 100, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 137, "goal": "الهدف الاستراتيجي الرابع", "dept": "إدارة التغذية والإطعام", "sub_goal": "الحوكمة", "project": "16.  اصدار تحديث مدونة تسويق بدائل حليب الأم", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 138, "goal": "الهدف الاستراتيجي الرابع", "dept": "إدارة الوقاية من الإشعاع", "sub_goal": "الحوكمة", "project": "17.  حصر وتحديث جميع القوانين والقرارات الوزارية والسياسات التشغيلية بإدارة الوقاية من الإشعاع", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 139, "goal": "الهدف الاستراتيجي الرابع", "dept": "إدارة الوقاية من الإشعاع", "sub_goal": "الحوكمة", "project": "18.  توقيع مذكرة تفاهم مع هيئة الرقابة النووية بالمملكة العربية السعودية", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 140, "goal": "الهدف الاستراتيجي الرابع", "dept": "إدارة الوقاية من الإشعاع", "sub_goal": "الحوكمة", "project": "19.  استحداث لائحة تركيز المواد المشعة في مواد البناء", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 141, "goal": "الهدف الاستراتيجي الرابع", "dept": "إدارة الوقاية من الإشعاع", "sub_goal": "الحوكمة", "project": "20.  اصدار تحديث قانون الأشعة المؤينة، وإصدار قانون الأشعة الغير المؤينة", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 142, "goal": "الهدف الاستراتيجي الرابع", "dept": "إدارة الوقاية من الإشعاع", "sub_goal": "الحوكمة", "project": "21.  الرقابة الصحية على الصالونات والمعاهد الصحية (الأجهزة التي مصادر الأشعة)", "progress": {"2026": 100, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": "صدور 6 قرارات إدارية بتشكيل فرق مشتركة مع التجارة والبلدية"}, {"id": 143, "goal": "الهدف الاستراتيجي الرابع", "dept": "إدارة الوقاية من الإشعاع", "sub_goal": "الحوكمة", "project": "22.  تحديث قرار حدود مستويات المواد المشعة في الأغذية والمياه والأعلاف", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 144, "goal": "الهدف الاستراتيجي الرابع", "dept": "إدارة الوقاية من الإشعاع", "sub_goal": "الحوكمة", "project": "23.  تحديث القرار الوزاري المتعلق بالفحص الطبي للتعرضات الزائدة", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 145, "goal": "الهدف الاستراتيجي الرابع", "dept": "إدارة الوقاية من الإشعاع", "sub_goal": "الحوكمة", "project": "24.  تحديث خطة الطوارئ الوطنية للأمن الإشعاعي والنووي بالتنسيق مع الدفاع المدني", "progress": {"2026": 90, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": "تم التحديث في 2026 وبانتظار قرار من معالي وزير الداخلية"}, {"id": 146, "goal": "الهدف الاستراتيجي الرابع", "dept": "إدارة الوقاية من الإشعاع", "sub_goal": "الحوكمة", "project": "25.  استكمال استراتيجية الكويت للأمن النووي بالتعاون مع معهد الكويت للأبحاث العلمية ووزارة الداخلية.", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 147, "goal": "الهدف الاستراتيجي الرابع", "dept": "إدارة الصحة العامة", "sub_goal": "الحوكمة", "project": "26.  حصر وتحديث جميع القوانين والقرارات الوزارية والسياسات التشغيلية بإدارة الصحة العامة", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 148, "goal": "الهدف الاستراتيجي الرابع", "dept": "إدارة الصحة العامة", "sub_goal": "الحوكمة", "project": "27.  دراسة دمج مشروع مكافحة القوارض مع قسم مكافحة الحشرات الطبية والقوارض", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 149, "goal": "الهدف الاستراتيجي الرابع", "dept": "إدارة الصحة العامة", "sub_goal": "الحوكمة", "project": "28.  تفعيل وتحديث اللجنة العليا للوقاية من الالتهاب الكبدي الوبائي", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 150, "goal": "الهدف الاستراتيجي الرابع", "dept": "إدارة الصحة العامة", "sub_goal": "الحوكمة", "project": "29.  اصدار قرار وزاري بإلزام المنشآت الغذائية بالتعاقد مع جهات مرخصة لمكافحة الحشرات والقوارض", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 151, "goal": "الهدف الاستراتيجي الرابع", "dept": "إدارة الصحة العامة", "sub_goal": "الحوكمة", "project": "30.  الحصول على شهادات الاعتماد الخليجية للمنافذ بما يتوافق مع لوائح IHR لعدد (10) منافذ", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 152, "goal": "الهدف الاستراتيجي الرابع", "dept": "إدارة الصحة العامة", "sub_goal": "الحوكمة", "project": "31.  إطلاق الإستراتيجية الوطنية لمكافحة مرض الدرن", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 153, "goal": "الهدف الاستراتيجي الرابع", "dept": "إدارة الصحة العامة", "sub_goal": "الحوكمة", "project": "32.  تنظيم عمليات الرقابة والتفتيش على دور الحضانة والصالونات والمعاهد الصحية ... إلخ) الضبطية القضائية، فيست موحد، نماذج موحدة ..", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 154, "goal": "الهدف الاستراتيجي الرابع", "dept": "إدارة الصحة العامة", "sub_goal": "الحوكمة", "project": "33.  اعداد أدلة فنية لمراقبة سلامة مياه الشرب والمياه النوعية والشواطئ وحمامات السباحة.", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 155, "goal": "الهدف الاستراتيجي الرابع", "dept": "إدارة الصحة العامة", "sub_goal": "الحوكمة", "project": "34.  اصدار قرار وزاري بالاشتراطات الصحية للمدن العمالية", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 156, "goal": "الهدف الاستراتيجي الرابع", "dept": "إدارة الصحة العامة", "sub_goal": "الحوكمة", "project": "35.  إعداد أدلة فنية لمراقبة سلامة الأغذية في منشآت وزارة الصحة", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 157, "goal": "الهدف الاستراتيجي الخامس", "dept": "إدارة منع العدوى والتعقيم", "sub_goal": "بناء القدرات", "project": "1.      دورات وورش عمل موجهة لرفع كفاءة القوى العاملة (تعليم مستمر – تطوير واكتساب مهارات جديدة – السلوك الوظيفي) عدد (24) سنويا", "progress": {"2026": 12, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": "دورتين PPE لإيبولا ، دورة رفع المستوى"}, {"id": 158, "goal": "الهدف الاستراتيجي الخامس", "dept": "إدارة منع العدوى والتعقيم", "sub_goal": "بناء القدرات", "project": "2.      حصول كل موظف بإدارة منع العدوى والتعقيم بجميع المستويات الوظيفية (الإدارية والفنية) على (تدريب نظامي يوم واحد أو أكثر خلال السنة) سنوياً.", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 159, "goal": "الهدف الاستراتيجي الخامس", "dept": "إدارة منع العدوى والتعقيم", "sub_goal": "بناء القدرات", "project": "3.      انشاء نظام لحساب حجم العمل (Workload) بكل قسم وتحديد الاحتياجات الوظيفية الفعلية واستقطاب الكفاءات", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 160, "goal": "الهدف الاستراتيجي الخامس", "dept": "إدارة منع العدوى والتعقيم", "sub_goal": "بناء القدرات", "project": "4.      إلزام جميع مقدمي الرعاية الصحية في القطاع الحكومي باجتياز التدريب على برامج منع العدوى الأساسية والحصول على Basic Infection Control Skills License الرخصة الأساسية في منع العدوى عند البدء بالعمل وعند الترقية", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 161, "goal": "الهدف الاستراتيجي الخامس", "dept": "إدارة منع العدوى والتعقيم", "sub_goal": "بناء القدرات", "project": "5.      البدلات المالية لمنع العدوى ومساواتها بباقي إدارات الوزارة ذات طبيعة العمل المشتركة.", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 162, "goal": "الهدف الاستراتيجي الخامس", "dept": "إدارة منع العدوى والتعقيم", "sub_goal": "بناء القدرات", "project": "6.      إضافة التعليم الإلزامي لمنع العدوى للأطباء في سنة الامتياز بالتنسيق مع معهد الكويت للاختصاصات الطبية ويتم اجتيازها خلال عام من تاريخ بداية سنة الامتياز من خلال المحاضرات النظرية والتطبيقات العملية", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 163, "goal": "الهدف الاستراتيجي الخامس", "dept": "إدارة منع العدوى والتعقيم", "sub_goal": "بناء القدرات", "project": "7.      زيادة عدد الأطباء بمقدار (15) طبيب خلال السنة الأولى والثانية", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 164, "goal": "الهدف الاستراتيجي الخامس", "dept": "إدارة منع العدوى والتعقيم", "sub_goal": "بناء القدرات", "project": "8.      زيادة عدد الممرضين بمقدار (30) ممرض خلال السنة الأولى والثانية", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 165, "goal": "الهدف الاستراتيجي الخامس", "dept": "مركز الكويت للوقاية من الأمراض ومكافحتها", "sub_goal": "بناء القدرات", "project": "9.      دورات وورش عمل موجهة لرفع كفاءة القوى العاملة (تعليم مستمر – تطوير واكتساب مهارات جديدة – السلوك الوظيفي) عدد (12)", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 166, "goal": "الهدف الاستراتيجي الخامس", "dept": "مركز الكويت للوقاية من الأمراض ومكافحتها", "sub_goal": "بناء القدرات", "project": "10.  حصول كل موظف بمركز الكويت للوقاية من الأمراض ومكافحتها بجميع المستويات الوظيفية (الإدارية والفنية) على (تدريب نظامي يوم واحد أو أكثر خلال السنة) سنوياً.", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 167, "goal": "الهدف الاستراتيجي الخامس", "dept": "مركز الكويت للوقاية من الأمراض ومكافحتها", "sub_goal": "بناء القدرات", "project": "12.  انشاء نظام لحساب حجم العمل (Workload) بكل قسم وتحديد الاحتياجات الوظيفية الفعلية", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 168, "goal": "الهدف الاستراتيجي الخامس", "dept": "إدارة الصحة الاجتماعية", "sub_goal": "بناء القدرات", "project": "13.  دورات تدريبية وورش عمل موجهة لرفع كفاءة القوى العاملة عدد (10) سنويا.", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 169, "goal": "الهدف الاستراتيجي الخامس", "dept": "إدارة الصحة الاجتماعية", "sub_goal": "بناء القدرات", "project": "14.  حصول كل موظف بإدارة الصحة الاجتماعية بجميع المستويات الوظيفية (الإدارية والفنية) على (تدريب نظامي يوم واحد أو أكثر خلال السنة) سنوياً.", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 170, "goal": "الهدف الاستراتيجي الخامس", "dept": "إدارة الصحة الاجتماعية", "sub_goal": "بناء القدرات", "project": "15.  انشاء نظام لحساب حجم العمل (Workload) بكل قسم وتحديد الاحتياجات الوظيفية الفعلية واستقطاب الكفاءات منها", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 171, "goal": "الهدف الاستراتيجي الخامس", "dept": "إدارة الصحة الاجتماعية", "sub_goal": "بناء القدرات", "project": "16.  زيادة عدد الباحثين النفسيين / الاجتماعيين بعدد (10 سنويا)", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 172, "goal": "الهدف الاستراتيجي الخامس", "dept": "إدارة الصحة الاجتماعية", "sub_goal": "بناء القدرات", "project": "17.  ادراج الباحثين النفسيين والاجتماعيين ضمن المهن الطبية المساندة (تحديث قانون 70/2020)", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 173, "goal": "الهدف الاستراتيجي الخامس", "dept": "إدارة الوقاية من الإشعاع", "sub_goal": "بناء القدرات", "project": "18.  دورات وورش عمل موجهة لرفع كفاءة القوى العاملة (تعليم مستمر – تطوير واكتساب مهارات جديدة – السلوك الوظيفي) عدد ( 8 ) سنويا", "progress": {"2026": 12, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": "دورة مهام مسؤولي الوقاية من الإشعاع"}, {"id": 174, "goal": "الهدف الاستراتيجي الخامس", "dept": "إدارة الوقاية من الإشعاع", "sub_goal": "بناء القدرات", "project": "19.  حصول كل موظف بإدارة الوقاية من الإشعاع بجميع المستويات الوظيفية (الإدارية والفنية) على (تدريب نظامي يوم واحد أو أكثر خلال السنة) سنوياً.", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 175, "goal": "الهدف الاستراتيجي الخامس", "dept": "إدارة الوقاية من الإشعاع", "sub_goal": "بناء القدرات", "project": "20.  انشاء نظام لحساب حجم العمل (Workload) بكل قسم وتحديد الاحتياجات الوظيفية الفعلية", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 176, "goal": "الهدف الاستراتيجي الخامس", "dept": "إدارة الوقاية من الإشعاع", "sub_goal": "بناء القدرات", "project": "21.  رفع نسبة العمالة الوطنية بإدارة الوقاية من الإشعاع إلى 85% بنهاية عام 2029", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 177, "goal": "الهدف الاستراتيجي الخامس", "dept": "إدارة الوقاية من الإشعاع", "sub_goal": "بناء القدرات", "project": "22.  اصدار كتيب جيبي يستخدم كدليل للطوارئ الاشعاعية والنووية توضح آلية التقييم الاشعاعي", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 178, "goal": "الهدف الاستراتيجي الخامس", "dept": "إدارة الصحة العامة", "sub_goal": "بناء القدرات", "project": "23.  دورات وورش عمل موجهة لرفع كفاءة القوى العاملة) تعليم مستمر – تطوير واكتساب مهارات جديدة – السلوك الوظيفي (عدد (12-10) تتضمن استضافة خبراء.", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 179, "goal": "الهدف الاستراتيجي الخامس", "dept": "إدارة الصحة العامة", "sub_goal": "بناء القدرات", "project": "24.  حصول كل موظف بإدارة الصحة العامة بجميع المستويات الوظيفية (إدارية – فنية) على) تدريب نظامي يوم واحد أو أكثر سنويا.", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 180, "goal": "الهدف الاستراتيجي الخامس", "dept": "إدارة الصحة العامة", "sub_goal": "بناء القدرات", "project": "25.  عقد عدد 1 مؤتمر للصحة العامة", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 181, "goal": "الهدف الاستراتيجي الخامس", "dept": "إدارة الصحة العامة", "sub_goal": "بناء القدرات", "project": "26.  انشاء نظام لحساب حجم العمل (Workload) بكل قسم وتحديد الاحتياجات الوظيفية الفعلية.", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 182, "goal": "الهدف الاستراتيجي الخامس", "dept": "إدارة الصحة العامة", "sub_goal": "بناء القدرات", "project": "27.  طرح مناقصة تزويد قسم مكافحة الحشرات الطبية والقوارض بالعمالة والسائقين.", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 183, "goal": "الهدف الاستراتيجي الخامس", "dept": "إدارة الصحة العامة", "sub_goal": "بناء القدرات", "project": "28.  تعيين وظيفة )مثقف صحي( في قطاع الصحة العامة مع مهام وظيفية واضحة عدد ) 10 ( في السنة الأولى.", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 184, "goal": "الهدف الاستراتيجي الخامس", "dept": "إدارة التغذية والإطعام", "sub_goal": "بناء القدرات", "project": "29.  دورات تدريبية موجهة لرفع كفاءة القوى العاملة (تعليم مستمر – تطوير واكتساب مهارات جديدة – السلوك الوظيفي) عدد (4) دورات سنوياً.", "progress": {"2026": 75, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": "ثلاث دورات للأيزو"}, {"id": 185, "goal": "الهدف الاستراتيجي الخامس", "dept": "إدارة التغذية والإطعام", "sub_goal": "بناء القدرات", "project": "30.  حصول كل موظف بإدارة التغذية والاطعام بجميع المستويات الوظيفية (الإدارية والفنية) على (تدريب نظامي يوم واحد أو أكثر خلال السنة) سنوياً.", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 186, "goal": "الهدف الاستراتيجي الخامس", "dept": "إدارة التغذية والإطعام", "sub_goal": "بناء القدرات", "project": "31.  مؤتمر الإطعام", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 187, "goal": "الهدف الاستراتيجي الخامس", "dept": "إدارة التغذية والإطعام", "sub_goal": "بناء القدرات", "project": "32.  ورشة عمل تغذية علاجية", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 188, "goal": "الهدف الاستراتيجي الخامس", "dept": "إدارة التغذية والإطعام", "sub_goal": "بناء القدرات", "project": "33.  تحديث حساب حجم العمل (Workload) بكل قسم وتحديد الاحتياجات الوظيفية الفعلية واستقطاب الكفاءات منها", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 189, "goal": "الهدف الاستراتيجي الخامس", "dept": "إدارة التغذية والإطعام", "sub_goal": "بناء القدرات", "project": "34.  تكويت – ومن في حكمهم - وظائف التغذية العلاجية (جميع المسميات) بنسبة 100% بنهاية عام 2029", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 190, "goal": "الهدف الاستراتيجي الخامس", "dept": "إدارة التغذية والإطعام", "sub_goal": "بناء القدرات", "project": "35.  إعداد مدرب المدربين في التغذية العلاجية من  ESPEN عدد (15) خلال عام 2026", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 191, "goal": "الهدف الاستراتيجي الخامس", "dept": "إدارة التغذية والإطعام", "sub_goal": "بناء القدرات", "project": "36.  اعتماد ساعات التعليم المستمر لترقيات وظائف التغذية العلاجية.", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 192, "goal": "الهدف الاستراتيجي السادس", "dept": "إدارة الصحة العامة", "sub_goal": "البنية التحتية", "project": "1.      تعزيز الجاهزية للطوارئ (خطط الطوارئ والإخلاء بنسبة %100 لجميع مرافق إدارة الصحة العامة)", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 193, "goal": "الهدف الاستراتيجي السادس", "dept": "إدارة الصحة العامة", "sub_goal": "البنية التحتية", "project": "2.      إنشاء مركز السالمي الحدودي", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 194, "goal": "الهدف الاستراتيجي السادس", "dept": "إدارة الصحة العامة", "sub_goal": "البنية التحتية", "project": "3.      تأهيل مدرسة خالد بن الوليد كمركز لفحص العمالة الوافدة وتأهيل مكتب استشاري لتقييم المكان الحالي.", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 195, "goal": "الهدف الاستراتيجي السادس", "dept": "إدارة الصحة العامة", "sub_goal": "البنية التحتية", "project": "4.      تجهيز وتأسيس مركز لفحص العمالة الوافدة بالفروانية.", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 196, "goal": "الهدف الاستراتيجي السادس", "dept": "إدارة الصحة العامة", "sub_goal": "البنية التحتية", "project": "5.      طرح المحور الخدمي للصحة العامة في المطلاع", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 197, "goal": "الهدف الاستراتيجي السادس", "dept": "إدارة الصحة العامة", "sub_goal": "البنية التحتية", "project": "6.      طرح مبنى إدارات الصحة العامة في الأندلس", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 198, "goal": "الهدف الاستراتيجي السادس", "dept": "إدارة الصحة العامة", "sub_goal": "البنية التحتية", "project": "7.      طرح المختبر البيولوجي 4 Level للصحة العامة", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 199, "goal": "الهدف الاستراتيجي السادس", "dept": "إدارة الصحة العامة", "sub_goal": "البنية التحتية", "project": "8.      متابعة وتجهيز عيادات المطار الجديد T2", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 200, "goal": "الهدف الاستراتيجي السادس", "dept": "إدارة الصحة العامة", "sub_goal": "البنية التحتية", "project": "9.      استكمال قسم الأشعة بمركز الفحيحيل لفحص العمالة", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 201, "goal": "الهدف الاستراتيجي السادس", "dept": "إدارة التغذية والإطعام", "sub_goal": "البنية التحتية", "project": "10.  تعزيز الجاهزية للطوارئ (خطط الطوارئ والاخلاء) بنسبة 100% لجميع مرافق إدارة التغذية والاطعام", "progress": {"2026": 100, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 202, "goal": "الهدف الاستراتيجي السادس", "dept": "إدارة التغذية والإطعام", "sub_goal": "البنية التحتية", "project": "11.  انشاء مبنى جديد متكامل لإدارة التغذية والإطعام مع مطبخ تجريبي وخدمات التغذية العلاجية بنهاية عام 2029.", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 203, "goal": "الهدف الاستراتيجي السادس", "dept": "إدارة التغذية والإطعام", "sub_goal": "البنية التحتية", "project": "12.  إخلاء مطبخ مستشفى الصباح وتجهيز موقع بديل", "progress": {"2026": 70, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 204, "goal": "الهدف الاستراتيجي السادس", "dept": "إدارة منع العدوى والتعقيم", "sub_goal": "البنية التحتية", "project": "13.  تعزيز الجاهزية للطوارئ (خطط الطوارئ والاخلاء) بنسبة 100% لجميع مرافق إدارة منع العدوى والتعقيم", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 205, "goal": "الهدف الاستراتيجي السادس", "dept": "إدارة منع العدوى والتعقيم", "sub_goal": "البنية التحتية", "project": "14.  تخصيص ارض لمبنى التعقيم الجديد", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 206, "goal": "الهدف الاستراتيجي السادس", "dept": "إدارة منع العدوى والتعقيم", "sub_goal": "البنية التحتية", "project": "15.  تطوير وتجديد مباني أقسام التعقيم في المستشفيات بعدد ( 1) مستشفى سنويا", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 207, "goal": "الهدف الاستراتيجي السادس", "dept": "إدارة منع العدوى والتعقيم", "sub_goal": "البنية التحتية", "project": "16.  وحدة التعقيم المتنقلة", "progress": {"2026": 30, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 208, "goal": "الهدف الاستراتيجي السادس", "dept": "مركز الكويت للوقاية من الأمراض ومكافحتها", "sub_goal": "البنية التحتية", "project": "17.  تعزيز الجاهزية للطوارئ (خطط الطوارئ والاخلاء) بنسبة 100% لجميع مرافق بمركز الكويت للوقاية من الأمراض ومكافحتها", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 209, "goal": "الهدف الاستراتيجي السادس", "dept": "مركز الكويت للوقاية من الأمراض ومكافحتها", "sub_goal": "البنية التحتية", "project": "18.  مبنى الإدارات المركزية للصحة العامة في الأندلس", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 210, "goal": "الهدف الاستراتيجي السادس", "dept": "إدارة الصحة الاجتماعية", "sub_goal": "البنية التحتية", "project": "19.  إنشاء مركز واحد للفحص ما قبل الزواج في المحاور الخدمية الجديدة بنهاية عام 2029.", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 211, "goal": "الهدف الاستراتيجي السادس", "dept": "إدارة الوقاية من الإشعاع", "sub_goal": "البنية التحتية", "project": "20.  تعزيز الجاهزية للطوارئ (خطط الطوارئ والاخلاء) بنسبة 100% لجميع مرافق إدارة الوقاية من الإشعاع", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 212, "goal": "الهدف الاستراتيجي السادس", "dept": "إدارة الوقاية من الإشعاع", "sub_goal": "البنية التحتية", "project": "21.  إنشاء مبنى جديد للإدارة بالسالمية بنهاية عام 2029", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 213, "goal": "الهدف الاستراتيجي السادس", "dept": "إدارة الوقاية من الإشعاع", "sub_goal": "البنية التحتية", "project": "22.  تأسيس غرفة الطوارئ الإشعاعية وتزويدها بأنظمة مراقبة.", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 214, "goal": "الهدف الاستراتيجي السابع", "dept": "إدارة منع العدوى والتعقيم", "sub_goal": "الاستدامة المالية", "project": "1.   رسوم (خدمة/استفادة) وزارة الصحة مقابل برامج تقدم للقطاع الأهلي من خلال شراكة استراتيجية بين إدارة منع العدوى والتعقيم ومستشفيات القطاع الاهلي نحو قطاع صحي آمن ومستدام", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 215, "goal": "الهدف الاستراتيجي السابع", "dept": "إدارة الوقاية من الإشعاع", "sub_goal": "الاستدامة المالية", "project": "2.   استحداث رسوم للتصاريح، وإعادة تسعير خدمات إدارة الوقاية من الإشعاع.", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 216, "goal": "الهدف الاستراتيجي السابع", "dept": "إدارة الوقاية من الإشعاع", "sub_goal": "الاستدامة المالية", "project": "3.   التخلص من الرصاص عن طريق بيعه بممارسات بشكل دوري.", "progress": {"2026": 100, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 217, "goal": "الهدف الاستراتيجي السابع", "dept": "إدارة الصحة الاجتماعية", "sub_goal": "الاستدامة المالية", "project": "4.   تأسيس صندوق خدمة اجتماعية بالتعاون مع الجهات الداعمة مثل بيت الزكاة والأمانة العامة للأوقاف بنهاية عام 2029 لدعم المرضى.", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 218, "goal": "الهدف الاستراتيجي السابع", "dept": "إدارة الصحة العامة", "sub_goal": "الاستدامة المالية", "project": "5.   دراسة جدوى خصخصة خدمات مكافحة الحشرات والقوارض، لخدمات المكافحة في السكن الخاص والقطاع الأهلي", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 219, "goal": "الهدف الاستراتيجي السابع", "dept": "إدارة الصحة العامة", "sub_goal": "الاستدامة المالية", "project": "6.   دراسة جدوى خصخصة خدمات فحص متداولي الأغذية", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 220, "goal": "الهدف الاستراتيجي السابع", "dept": "إدارة الصحة العامة", "sub_goal": "الاستدامة المالية", "project": "7.   إضافة مصادر للدخل (عدد (1) كافية / إعادة تسعير خدمات إدارة الصحة العامة)", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 221, "goal": "الهدف الاستراتيجي السابع", "dept": "إدارة التغذية والإطعام", "sub_goal": "الاستدامة المالية", "project": "8.   إضافة مصادر للدخل (إعادة تسعير الخدمات / المكملات الغذائية)", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}, {"id": 222, "goal": "الهدف الاستراتيجي السابع", "dept": "إدارة التغذية والإطعام", "sub_goal": "الاستدامة المالية", "project": "9.   إعادة توزيع المعدات حسب احتياجات أقسام الإطعام بجميع مستشفيات دولة الكويت (الاستخدام الأمثل للموارد)", "progress": {"2026": 0, "2027": 0, "2028": 0, "2029": 0, "2030": 0}, "responsible": "", "notes": ""}];
+let db, role, yr='2026', ld={}, wt={};
+
+// Firebase init
+window.addEventListener('load', function(){
+  try{
+    if(typeof firebase==='undefined'){showToast('❌ Firebase SDK لم يتحمل');return;}
+    if(!firebase.apps.length){
+      firebase.initializeApp({
+        apiKey:"AIzaSyApo9g6JFNQlz_-VTuw-uwNSjzRx5AnsNQ",
+        databaseURL:"https://public-health-strategy-default-rtdb.firebaseio.com",
+        projectId:"public-health-strategy",
+        appId:"1:267725264688:web:ef5865ea982d727755daf5"
+      });
+    }
+    db = firebase.database();
+  }catch(e){console.error('FB err:',e);}
+});
+
+// LOGIN
+function selRole(r){
+  document.querySelectorAll('.rbtn').forEach(b=>b.classList.remove('sel'));
+  document.getElementById(r==='admin'?'bAdm':'bMgr').classList.add('sel');
+  document.getElementById('pwrap').style.display=r==='admin'?'block':'none';
+  document.getElementById('perr').style.display='none';
+  var btn=document.getElementById('lbtn');
+  btn.disabled=false;
+  btn.dataset.r=r;
+  btn.textContent=r==='admin'?'دخول كوكيل القطاع':'دخول كمدير';
+}
+function doLogin(){
+  var r=document.getElementById('lbtn').dataset.r;
+  if(!r)return;
+  if(r==='admin'&&document.getElementById('pwin').value!==PASS){
+    document.getElementById('perr').style.display='block';return;
+  }
+  if(!db){showToast('❌ جاري الاتصال، حاول مجدداً');return;}
+  role=r;
+  document.getElementById('loginScreen').style.display='none';
+  document.getElementById('mhdr').style.display='block';
+  document.getElementById('mcnt').style.display='block';
+  var b=document.getElementById('rbadge');
+  b.className='rbadge '+(r==='admin'?'adm':'mgr');
+  b.innerHTML=r==='admin'?'👔 وكيل القطاع':'👤 مدير / معني';
+  loadData();
+}
+function logout(){
+  role=null;
+  document.getElementById('mhdr').style.display='none';
+  document.getElementById('mcnt').style.display='none';
+  document.getElementById('loginScreen').style.display='flex';
+  document.querySelectorAll('.rbtn').forEach(b=>b.classList.remove('sel'));
+  document.getElementById('pwrap').style.display='none';
+  var btn=document.getElementById('lbtn');
+  btn.disabled=true; btn.textContent='دخول'; btn.dataset.r='';
+  document.getElementById('pwin').value='';
+}
+
+// DATA
+function initLocal(){
+  BP.forEach(function(p){
+    if(!ld[p.id]) ld[p.id]={
+      official:{'2026':p.progress['2026']||0,'2027':p.progress['2027']||0,'2028':p.progress['2028']||0,'2029':p.progress['2029']||0,'2030':p.progress['2030']||0},
+      estimated:{'2026':0,'2027':0,'2028':0,'2029':0,'2030':0},
+      ro:'',re:'',notes:p.notes||''
+    };
+    var d=ld[p.id];
+    if(!d.official)d.official={'2026':0,'2027':0,'2028':0,'2029':0,'2030':0};
+    if(!d.estimated)d.estimated={'2026':0,'2027':0,'2028':0,'2029':0,'2030':0};
+    if(d.ro===undefined)d.ro='';
+    if(d.re===undefined)d.re='';
+    if(d.notes===undefined)d.notes='';
+  });
+}
+function loadData(){
+  document.getElementById('lov').style.display='flex';
+  sb('sy');
+  db.ref('projects').once('value').then(function(snap){
+    var fb=snap.val()||{};
+    BP.forEach(function(p){if(fb[p.id])ld[p.id]=fb[p.id];});
+    initLocal();
+    document.getElementById('lov').style.display='none';
+    sb('ok');
+    popF(); render(); listen();
+  }).catch(function(e){
+    document.getElementById('lov').style.display='none';
+    sb('er'); showToast('❌ '+e.message);
+  });
+}
+function listen(){
+  db.ref('projects').on('value',function(snap){
+    var fb=snap.val()||{}, chg=false;
+    Object.keys(fb).forEach(function(pid){
+      var id=parseInt(pid);
+      if(!ld[id])return;
+      if(JSON.stringify(fb[pid])!==JSON.stringify(ld[id])){ld[id]=fb[pid];updCells(id);chg=true;}
+    });
+    if(chg){updSum(getF());sb('ok');}
+  });
+}
+function updCells(pid){
+  var pd=ld[pid]; if(!pd)return;
+  ['2026','2027','2028','2029','2030'].forEach(function(y){
+    var ov=(pd.official||{})[y]||0, ev=(pd.estimated||{})[y]||0;
+    var ob=document.getElementById('ob_'+pid+'_'+y);
+    if(ob){ob.style.width=ov+'%';ob.style.background=ov>=100?'#27ae60':ov>0?'#f39c12':'#e8ecf0';}
+    var od=document.getElementById('od_'+pid+'_'+y);
+    if(od)od.style.background=ov>=100?'#27ae60':ov>0?'#f39c12':'#bdc3c7';
+    var oR=document.querySelector('input[type=range][data-pid="'+pid+'"][data-yr="'+y+'"][data-tp="o"]');
+    var oN=document.querySelector('input.ni[data-pid="'+pid+'"][data-yr="'+y+'"][data-tp="o"]');
+    if(oR)oR.value=ov; if(oN)oN.value=ov;
+    var eb=document.getElementById('eb_'+pid+'_'+y); if(eb)eb.style.width=ev+'%';
+    var eR=document.querySelector('input.esl[data-pid="'+pid+'"][data-yr="'+y+'"]');
+    var eN=document.querySelector('input.en[data-pid="'+pid+'"][data-yr="'+y+'"]');
+    if(eR)eR.value=ev; if(eN)eN.value=ev;
+  });
+  var ro=document.querySelector('input.ri:not(.re)[data-pid="'+pid+'"]');
+  if(ro&&document.activeElement!==ro)ro.value=pd.ro||'';
+  var re=document.querySelector('input.re[data-pid="'+pid+'"]');
+  if(re&&document.activeElement!==re)re.value=pd.re||'';
+  var nt=document.querySelector('textarea[data-pid="'+pid+'"]');
+  if(nt&&document.activeElement!==nt)nt.value=pd.notes||'';
+  if(pd.pname){var pt=document.getElementById('pt_'+pid);if(pt&&pt.style.display!=='none')pt.textContent=pd.pname;}
+}
+function wr(pid){
+  clearTimeout(wt[pid]);
+  wt[pid]=setTimeout(function(){
+    sb('sy');
+    db.ref('projects/'+pid).set(ld[pid]).then(function(){sb('ok');}).catch(function(e){sb('er');showToast('❌ '+e.message);});
+  },800);
+}
+
+// FILTERS
+function popF(){
+  var gs=[...new Set(BP.map(function(p){return p.goal;}).filter(Boolean))];
+  var ds=[...new Set(BP.map(function(p){return p.dept;}).filter(Boolean))];
+  var gS=document.getElementById('gf'),dS=document.getElementById('df');
+  while(gS.options.length>1)gS.remove(1);
+  while(dS.options.length>1)dS.remove(1);
+  gs.forEach(function(g){var o=document.createElement('option');o.value=o.textContent=g;gS.appendChild(o);});
+  ds.forEach(function(d){var o=document.createElement('option');o.value=o.textContent=d;dS.appendChild(o);});
+}
+function getF(){
+  var s=document.getElementById('srch').value.toLowerCase();
+  var gf=document.getElementById('gf').value;
+  var df=document.getElementById('df').value;
+  var stf=document.getElementById('sf').value;
+  var yrs=yr==='all'?['2026','2027','2028','2029','2030']:[yr];
+  return BP.filter(function(p){
+    if(gf&&p.goal!==gf)return false;
+    if(df&&p.dept!==df)return false;
+    var pn=((ld[p.id]&&ld[p.id].pname)||p.project).toLowerCase();
+    if(s&&!pn.includes(s)&&!p.dept.toLowerCase().includes(s))return false;
+    if(stf){
+      var vals=yrs.map(function(y){return((ld[p.id]||{}).official||{})[y]||0;});
+      var avg=Math.round(vals.reduce(function(a,b){return a+b;},0)/vals.length);
+      if(stf==='done'&&avg<100)return false;
+      if(stf==='prog'&&(avg===0||avg>=100))return false;
+      if(stf==='not'&&avg>0)return false;
+    }
+    return true;
+  });
+}
+function applyF(){render();}
+function swYear(y,el){yr=y;document.querySelectorAll('.ytab').forEach(function(t){t.classList.remove('act');});el.classList.add('act');render();}
+
+// SUMMARY
+function updSum(fl){
+  var yrs=yr==='all'?['2026','2027','2028','2029','2030']:[yr];
+  var dn=0,ip=0,ns=0,tot=fl.length;
+  fl.forEach(function(p){
+    var vals=yrs.map(function(y){return((ld[p.id]||{}).official||{})[y]||0;});
+    var avg=Math.round(vals.reduce(function(a,b){return a+b;},0)/vals.length);
+    if(avg>=100)dn++;else if(avg>0)ip++;else ns++;
+  });
+  var pct=tot>0?Math.round(dn/tot*100):0;
+  document.getElementById('yppct').textContent=pct+'%';
+  document.getElementById('ypbf').style.width=pct+'%';
+  document.getElementById('ypbl').textContent=yr==='all'?'نسبة الإنجاز الرسمية الكلية':'نسبة الإنجاز الرسمية لعام '+yr;
+  var f=document.getElementById('ypbf');
+  f.style.background=pct>=75?'linear-gradient(90deg,#27ae60,#2ecc71)':pct>=40?'linear-gradient(90deg,#f39c12,#f1c40f)':'linear-gradient(90deg,#e74c3c,#e67e22)';
+  document.getElementById('scards').innerHTML=
+    '<div class="scard tot"><div class="lb">إجمالي المشاريع</div><div class="vl">'+tot+'</div><div class="sb">مشروع استراتيجي</div></div>'+
+    '<div class="scard dn"><div class="lb">✅ مكتملة (100%)</div><div class="vl">'+dn+'</div><div class="sb">'+(tot?Math.round(dn/tot*100):0)+'% من الإجمالي</div></div>'+
+    '<div class="scard ip"><div class="lb">⏳ قيد التنفيذ</div><div class="vl">'+ip+'</div><div class="sb">'+(tot?Math.round(ip/tot*100):0)+'% من الإجمالي</div></div>'+
+    '<div class="scard ns"><div class="lb">⭕ لم تبدأ</div><div class="vl">'+ns+'</div><div class="sb">'+(tot?Math.round(ns/tot*100):0)+'% من الإجمالي</div></div>';
+  var depts={};
+  fl.forEach(function(p){
+    var vals=yrs.map(function(y){return((ld[p.id]||{}).official||{})[y]||0;});
+    var avg=Math.round(vals.reduce(function(a,b){return a+b;},0)/vals.length);
+    if(!depts[p.dept])depts[p.dept]={d:0,t:0};
+    depts[p.dept].t++;
+    if(avg>=100)depts[p.dept].d++;
+  });
+  document.getElementById('dsum').innerHTML=Object.entries(depts)
+    .sort(function(a,b){return b[1].d/b[1].t-a[1].d/a[1].t;})
+    .map(function(e){
+      var pct=e[1].t?Math.round(e[1].d/e[1].t*100):0;
+      var c=pct>=75?'#27ae60':pct>=40?'#f39c12':'#e74c3c';
+      return '<div class="drow"><span class="dname" title="'+e[0]+'">'+e[0]+'</span><div class="dbar"><div class="dbf" style="width:'+pct+'%;background:'+c+'"></div></div><span class="dpct">'+pct+'%</span></div>';
+    }).join('');
+}
+
+// RENDER
+function render(){
+  var fl=getF(); updSum(fl);
+  var wrap=document.getElementById('twrap'); wrap.innerHTML='';
+  if(!fl.length){wrap.innerHTML='<div class="nores">🔍 لا توجد نتائج</div>';return;}
+  var yrs=yr==='all'?['2026','2027','2028','2029','2030']:[yr];
+  var isAdm=role==='admin';
+  var byG={};
+  fl.forEach(function(p){if(!byG[p.goal])byG[p.goal]=[];byG[p.goal].push(p);});
+  Object.keys(byG).forEach(function(goal){
+    var projs=byG[goal];
+    var gd=0;
+    projs.forEach(function(p){
+      var v=yrs.map(function(y){return((ld[p.id]||{}).official||{})[y]||0;});
+      if(Math.round(v.reduce(function(a,b){return a+b;},0)/v.length)>=100)gd++;
+    });
+    var gp=projs.length?Math.round(gd/projs.length*100):0;
+    var grp=document.createElement('div'); grp.className='ggrp';
+    var hd=document.createElement('div'); hd.className='ghdr';
+    hd.innerHTML='<div class="gnm">'+goal+'</div><div class="gst"><span>📁 '+projs.length+' مشروع</span><span>✅ '+gd+' مكتمل</span><span>📈 '+gp+'%</span><span class="tog">▼</span></div>';
+    hd.onclick=function(){this.classList.toggle('col');var tb=grp.querySelector('tbody');if(tb)tb.style.display=this.classList.contains('col')?'none':'';};
+    grp.appendChild(hd);
+    var gh='<th class="cgb" colspan="2"></th>';
+    yrs.forEach(function(y){gh+='<th class="cgo" colspan="2">الإنجاز الرسمي '+y+'</th><th class="cge" colspan="3">الإنجاز التقديري '+y+'</th>';});
+    gh+='<th class="cgb"></th>';
+    var sh='<th style="width:28px">#</th><th>المشروع</th>';
+    yrs.forEach(function(){sh+='<th style="background:var(--ob);font-size:10px">النسبة</th><th style="background:var(--ob);font-size:10px">المسؤول</th><th style="background:var(--eb);font-size:10px">النسبة</th><th style="background:var(--eb);font-size:10px">المسؤول</th>';});
+    sh+='<th>الملاحظات</th>';
+    var tbl=document.createElement('table');
+    tbl.innerHTML='<thead><tr>'+gh+'</tr><tr>'+sh+'</tr></thead><tbody></tbody>';
+    var tb=tbl.querySelector('tbody');
+    projs.forEach(function(p,idx){
+      var pd=ld[p.id]||{official:{},estimated:{},ro:'',re:'',notes:''};
+      var pn=(pd.pname||p.project).replace(/</g,'&lt;').replace(/>/g,'&gt;');
+      var epb=isAdm?'<button class="epb" title="تعديل" onclick="startEP('+p.id+',this)">✏️</button>':'';
+      var cells='';
+      yrs.forEach(function(y){
+        var ov=(pd.official||{})[y]||0, ev=(pd.estimated||{})[y]||0;
+        var oc=ov>=100?'#27ae60':ov>0?'#f39c12':'#e8ecf0';
+        var od=ov>=100?'#27ae60':ov>0?'#f39c12':'#bdc3c7';
+        var dis=isAdm?'':'disabled';
+        cells+=
+          '<td style="background:var(--ob)">'+
+            '<div class="pw"><div class="sr">'+
+              '<input type="range" min="0" max="100" step="5" value="'+ov+'" '+dis+' data-pid="'+p.id+'" data-yr="'+y+'" data-tp="o" oninput="uO('+p.id+',''+y+'',this.value,'r',this)">'+
+              '<input type="number" min="0" max="100" value="'+ov+'" class="ni" '+dis+' data-pid="'+p.id+'" data-yr="'+y+'" data-tp="o" oninput="uO('+p.id+',''+y+'',this.value,'n',this)">'+
+              '<span class="pl">%</span>'+(isAdm?'':'<span class="lk">🔒</span>')+
+              '<span class="sd" style="background:'+od+'" id="od_'+p.id+'_'+y+'"></span>'+
+            '</div><div class="mb"><div class="mbf" id="ob_'+p.id+'_'+y+'" style="width:'+ov+'%;background:'+oc+'"></div></div></div>'+
+          '</td>'+
+          '<td style="background:var(--ob)">'+
+            '<input type="text" class="ri" '+dis+' data-pid="'+p.id+'" placeholder="'+(isAdm?'اسم المسؤول...':'🔒')+'" value="'+(pd.ro||'').replace(/"/g,'&quot;')+'" oninput="uRO('+p.id+',this)">'+
+          '</td>'+
+          '<td style="background:var(--eb)">'+
+            '<div class="pw"><div class="sr">'+
+              '<input type="range" class="esl" min="0" max="100" step="5" value="'+ev+'" data-pid="'+p.id+'" data-yr="'+y+'" oninput="uE('+p.id+',''+y+'',this.value,'r',this)">'+
+              '<input type="number" min="0" max="100" value="'+ev+'" class="ni en" data-pid="'+p.id+'" data-yr="'+y+'" oninput="uE('+p.id+',''+y+'',this.value,'n',this)">'+
+              '<span class="pl">%</span>'+
+            '</div><div class="mb"><div class="mbf" id="eb_'+p.id+'_'+y+'" style="width:'+ev+'%;background:#9b59b6"></div></div></div>'+
+          '</td>'+
+          '<td style="background:var(--eb)">'+
+            '<input type="text" class="ri re" data-pid="'+p.id+'" placeholder="اسم المسؤول..." value="'+(pd.re||'').replace(/"/g,'&quot;')+'" oninput="uRE('+p.id+',this)">'+
+          '</td>';
+      });
+      var tr=document.createElement('tr');
+      tr.innerHTML=
+        '<td style="color:var(--tm);font-size:11px;text-align:center">'+(idx+1)+'</td>'+
+        '<td><div class="ptxt" id="pt_'+p.id+'">'+pn+'</div>'+epb+(p.dept?'<span class="db">'+p.dept+'</span>':'')+'</td>'+
+        cells+
+        '<td style="min-width:140px"><textarea class="ni2" rows="2" data-pid="'+p.id+'" placeholder="ملاحظات..." oninput="uN('+p.id+',this)">'+(pd.notes||'')+'</textarea></td>';
+      tb.appendChild(tr);
+    });
+    grp.appendChild(tbl); wrap.appendChild(grp);
+  });
+}
+
+// HANDLERS
+function ens(pid){if(!ld[pid])ld[pid]={official:{'2026':0,'2027':0,'2028':0,'2029':0,'2030':0},estimated:{'2026':0,'2027':0,'2028':0,'2029':0,'2030':0},ro:'',re:'',notes:''};}
+function uO(pid,y,v,src,el){
+  if(role!=='admin')return;
+  var val=Math.max(0,Math.min(100,parseInt(v)||0));
+  ens(pid); ld[pid].official[y]=val;
+  var td=el.closest('td');
+  if(td){
+    var r=td.querySelector('input[type=range]'),n=td.querySelector('.ni');
+    if(r&&src!=='r')r.value=val; if(n&&src!=='n')n.value=val;
+    var ob=document.getElementById('ob_'+pid+'_'+y);
+    if(ob){ob.style.width=val+'%';ob.style.background=val>=100?'#27ae60':val>0?'#f39c12':'#e8ecf0';}
+    var od=document.getElementById('od_'+pid+'_'+y);
+    if(od)od.style.background=val>=100?'#27ae60':val>0?'#f39c12':'#bdc3c7';
+    td.classList.add('ch'); setTimeout(function(){td.classList.remove('ch');},700);
+  }
+  updSum(getF()); wr(pid);
+}
+function uE(pid,y,v,src,el){
+  var val=Math.max(0,Math.min(100,parseInt(v)||0));
+  ens(pid); ld[pid].estimated[y]=val;
+  var td=el.closest('td');
+  if(td){
+    var r=td.querySelector('.esl'),n=td.querySelector('.en');
+    if(r&&src!=='r')r.value=val; if(n&&src!=='n')n.value=val;
+    var eb=document.getElementById('eb_'+pid+'_'+y); if(eb)eb.style.width=val+'%';
+    td.classList.add('ch'); setTimeout(function(){td.classList.remove('ch');},700);
+  }
+  wr(pid);
+}
+function uRO(pid,el){if(role!=='admin')return;ens(pid);ld[pid].ro=el.value;wr(pid);}
+function uRE(pid,el){ens(pid);ld[pid].re=el.value;wr(pid);}
+function uN(pid,el){ens(pid);ld[pid].notes=el.value;wr(pid);}
+
+// EDIT PROJECT NAME
+function startEP(pid,btn){
+  if(role!=='admin')return;
+  var td=btn.closest('td');
+  var txtDiv=document.getElementById('pt_'+pid);
+  if(!txtDiv||td.querySelector('.pea'))return;
+  var orig=ld[pid]&&ld[pid].pname||BP.find(function(p){return p.id===pid;}).project;
+  var area=document.createElement('textarea');
+  area.className='pea'; area.rows=3; area.value=orig;
+  var acts=document.createElement('div'); acts.className='pact';
+  var sb2=document.createElement('button'); sb2.className='psb'; sb2.textContent='✔ حفظ';
+  var cb=document.createElement('button'); cb.className='pcb'; cb.textContent='إلغاء';
+  sb2.onclick=function(){
+    var v=area.value.trim();
+    if(!v)return;
+    ens(pid); ld[pid].pname=v;
+    area.remove(); acts.remove();
+    txtDiv.textContent=v; txtDiv.style.display=''; btn.style.display='';
+    wr(pid); showToast('✅ تم تحديث اسم المشروع');
+  };
+  cb.onclick=function(){area.remove();acts.remove();txtDiv.style.display='';btn.style.display='';};
+  acts.appendChild(sb2); acts.appendChild(cb);
+  txtDiv.style.display='none'; btn.style.display='none';
+  td.insertBefore(area,txtDiv.nextSibling); td.insertBefore(acts,area.nextSibling);
+  area.focus();
+}
+
+function sb(s){var b=document.getElementById('syncBar');b.className='';if(s){b.classList.add(s);if(s==='ok')setTimeout(function(){b.className='';},2000);}}
+function showToast(msg){var t=document.getElementById('toast');t.textContent=msg;t.classList.add('sh');setTimeout(function(){t.classList.remove('sh');},3500);}
+</script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-database-compat.js"></script>
+</body>
+</html>
